@@ -1,0 +1,3612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Product Design Case Study: Leave Management System (LMS) covering Employee and Manager experiences. Designed for Rima Debnath's portfolio.">
+    <title>rima's portfolio - Leave Management System (LMS) Case Study</title>
+    
+    <!-- Google Fonts: Ramaraja for Serif Headings, IBM Plex Mono for Monospace Elements -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ramaraja&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           GRACE JOSEPH PORTFOLIO DESIGN SYSTEM
+           ========================================================================== */
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-page: #fafafa;
+            --bg-card: #ffffff;
+            --bg-panel: #f8f8f6;
+            --text-primary: #000000;
+            --text-secondary: #444444;
+            --text-muted: #888888;
+            --border-primary: 1px solid #000000;
+            --border-thick: 2px solid #000000;
+            --border-dashed: 1px dashed #666666;
+            
+            /* Underline & Highlight Colors */
+            --accent-green: #0D5C34;
+            --accent-green-light: #EBF5EE;
+            --accent-red: #D95D39;
+            --accent-red-light: #FDF2F0;
+            --accent-yellow: #DF9A00;
+            --accent-yellow-light: #FFF9E6;
+            
+            --selection-bg: #bdffb7;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        ::-selection {
+            background: var(--selection-bg);
+        }
+        ::-moz-selection {
+            background: var(--selection-bg);
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            font-family: 'IBM Plex Mono', monospace;
+            line-height: 1.6;
+            padding-top: 9vh; /* topbar offset */
+            overflow-x: hidden;
+        }
+
+        /* Typography & Link Overlays */
+        h1, h2 {
+            font-family: 'Ramaraja', serif;
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 46px;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 0.5em;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+
+        h4 {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .underline {
+            text-decoration: underline;
+            text-decoration-thickness: 12%;
+        }
+
+        .green-underline {
+            text-decoration-color: var(--accent-green);
+            -moz-text-decoration-color: var(--accent-green);
+        }
+
+        /* Header Bar (#topbar) */
+        #topbar {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-primary);
+            margin: 0;
+            padding: 1.5vh 3rem;
+            position: fixed;
+            background-color: var(--bg-page);
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            height: 9vh;
+        }
+
+        #nameplate {
+            font-size: 24px;
+            font-family: 'Ramaraja', serif;
+            padding: 0;
+        }
+
+        #navbar ul {
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+            padding: 0;
+        }
+
+        #navbar ul li {
+            list-style-type: none;
+            padding: 0 1.5rem;
+        }
+
+        #navbar h2 {
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #navbar a:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--accent-green);
+        }
+
+        /* Layout Main Containers */
+        .work-page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .work-page-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            padding: 2rem 0;
+        }
+
+        .work-page-header-title {
+            font-size: 64px;
+            margin-bottom: 0.5rem;
+        }
+
+        .up-next-role {
+            font-size: 18px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 10px;
+        }
+
+        /* Info Row */
+        .work-page-info-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            border: var(--border-primary);
+            background-color: var(--bg-panel);
+            margin-bottom: 4rem;
+        }
+
+        .info-cell {
+            padding: 1.5rem;
+            border-right: var(--border-primary);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-cell:last-child {
+            border-right: none;
+        }
+
+        .info-cell span {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-cell strong {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Narrative Layout Styles */
+        .work-page-overview {
+            margin-bottom: 5rem;
+        }
+
+        .work-page-overview-content {
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-primary);
+            border-left: 3px solid var(--accent-green);
+            padding-left: 2rem;
+        }
+
+        .work-page-skills-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 6rem;
+        }
+
+        .work-page-skills {
+            border: var(--border-primary);
+            padding: 2rem;
+            background-color: var(--bg-card);
+        }
+
+        .skills-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-panel);
+            border: var(--border-primary);
+            padding: 6px 14px;
+            font-size: 13px;
+        }
+
+        /* Sections Grid layout */
+        .case-section {
+            margin-bottom: 6rem;
+            border-top: var(--border-primary);
+            padding-top: 3.5rem;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 900px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .work-page-skills-main {
+                grid-template-columns: 1fr;
+            }
+            #topbar {
+                padding: 1.5vh 1.5rem;
+            }
+        }
+
+        .section-left h2 {
+            position: sticky;
+            top: 12vh;
+        }
+
+        .section-right p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Pain Points Matrix Layout */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .matrix-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .matrix-card {
+            border: var(--border-primary);
+            padding: 1.5rem;
+            background-color: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .matrix-card:hover {
+            box-shadow: 4px 4px 0px #000000;
+            transform: translate(-4px, -4px);
+        }
+
+        .matrix-card-flag {
+            font-size: 11px;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: var(--text-primary);
+            padding: 4px 8px;
+            align-self: flex-start;
+        }
+
+        .matrix-card h3 {
+            font-size: 17px;
+            margin: 0;
+        }
+
+        .matrix-card p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* SVG Sitemap wrapper & styling overrides */
+        .sitemap-container {
+            border: var(--border-primary);
+            background-color: var(--bg-card);
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .sitemap-svg {
+            width: 100%;
+            height: auto;
+            min-width: 650px;
+            display: block;
+        }
+
+        .sitemap-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: var(--border-dashed);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+        }
+
+        .leg-shape {
+            border: var(--border-primary);
+            background: #ffffff;
+            width: 24px;
+            height: 14px;
+        }
+        
+        .leg-shape.oval {
+            border-radius: 10px;
+            background: #000;
+            border: none;
+        }
+
+        .leg-shape.dark {
+            background-color: #222;
+        }
+
+        .leg-shape.dashed {
+            border: 1px dashed #666;
+            background-color: var(--bg-panel);
+        }
+
+        .leg-shape.diamond {
+            width: 12px;
+            height: 12px;
+            transform: rotate(45deg);
+            margin: 0 6px;
+        }
+
+        /* Deliverables Grid */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .deliverable-card {
+            border: var(--border-primary);
+            background-color: var(--bg-card);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 170px;
+            transition: var(--transition);
+        }
+
+        .deliverable-card:hover {
+            background-color: var(--accent-green-light);
+            border-color: var(--accent-green);
+        }
+
+        .deliverable-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .deliverable-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .btn-link {
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            color: var(--text-primary);
+            cursor: pointer;
+            align-self: flex-start;
+        }
+
+        /* ==========================================================================
+           INTERACTIVE WIREFRAME SIMULATOR CSS
+           ========================================================================== */
+        
+        .simulator-window {
+            border: var(--border-thick);
+            background-color: #f0f0ed;
+            box-shadow: 8px 8px 0px #000000;
+            margin: 3rem 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        /* Simulator Header Bar */
+        .sim-header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .sim-window-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .sim-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ffffff;
+        }
+
+        .sim-dot:nth-child(1) { background-color: #ff5f56; }
+        .sim-dot:nth-child(2) { background-color: #ffbd2e; }
+        .sim-dot:nth-child(3) { background-color: #27c93f; }
+
+        .sim-nav {
+            background-color: #ffffff;
+            border-bottom: var(--border-primary);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sim-logo {
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sim-logo-ico {
+            background-color: #000;
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .sim-profile {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Main Workspace Simulator Grid */
+        .sim-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-height: 520px;
+            position: relative;
+        }
+
+        /* Tile Grid */
+        .sim-tile-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sim-tile {
+            background-color: #ffffff;
+            border: var(--border-primary);
+            padding: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sim-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 3px 3px 0px #000000;
+        }
+
+        .sim-tile-title {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .sim-tile-val {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 5px 0 2px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .sim-tile-meta {
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .sim-tile.active-tile {
+            border: 2px solid var(--accent-green);
+            background-color: var(--accent-green-light);
+        }
+
+        /* List container */
+        .sim-main-panel {
+            background-color: #ffffff;
+            border: var(--border-primary);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sim-panel-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        /* Search / Filters Bar */
+        .sim-filters-bar {
+            display: flex;
+            gap: 10px;
+        }
+
+        .sim-input-search {
+            flex: 1;
+            border: var(--border-primary);
+            padding: 8px 12px;
+            font-family: inherit;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .sim-select-filter {
+            border: var(--border-primary);
+            padding: 8px;
+            font-family: inherit;
+            font-size: 12px;
+            background: #ffffff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Table */
+        .sim-table-wrap {
+            overflow-x: auto;
+        }
+
+        .sim-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .sim-table th {
+            border-bottom: 2px solid #000;
+            padding: 10px 8px;
+            font-weight: 700;
+        }
+
+        .sim-table td {
+            border-bottom: 1px solid #eee;
+            padding: 12px 8px;
+            vertical-align: middle;
+        }
+
+        .sim-row {
+            transition: var(--transition);
+        }
+
+        .sim-row:hover {
+            background-color: #fafafa;
+        }
+
+        .employee-cell {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .emp-name {
+            font-weight: 700;
+        }
+
+        .emp-role {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 3px 6px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 2px;
+        }
+
+        .badge-conflict {
+            background-color: var(--accent-red-light);
+            color: var(--accent-red);
+            border: 1px solid var(--accent-red);
+        }
+
+        .badge-overdue {
+            background-color: var(--accent-yellow-light);
+            color: var(--accent-yellow);
+            border: 1px solid var(--accent-yellow);
+        }
+
+        .badge-unpaid {
+            background-color: #eeeeee;
+            color: #666666;
+            border: 1px solid #cccccc;
+        }
+
+        .btn-review {
+            border: var(--border-primary);
+            background-color: #000000;
+            color: #ffffff;
+            padding: 5px 10px;
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-review:hover {
+            background-color: var(--accent-green);
+            color: #ffffff;
+        }
+
+        /* Sidebar - Availability */
+        .sim-sidebar {
+            background-color: #ffffff;
+            border: var(--border-primary);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-self: flex-start;
+        }
+
+        .sim-sidebar-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+
+        .sim-sidebar-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 6px;
+        }
+
+        .sidebar-item-name {
+            font-weight: 600;
+        }
+
+        .sidebar-item-dates {
+            color: var(--text-secondary);
+        }
+
+        /* Popup Review Modal Drawer */
+        .sim-drawer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 10;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .sim-drawer-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .sim-drawer {
+            background-color: #ffffff;
+            border: var(--border-thick);
+            width: 100%;
+            max-width: 520px;
+            padding: 25px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.25s ease;
+        }
+
+        .sim-drawer-overlay.active .sim-drawer {
+            transform: scale(1);
+        }
+
+        .sim-drawer-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .sim-drawer-close:hover {
+            color: var(--accent-red);
+        }
+
+        /* Warning Banners */
+        .sim-banner {
+            padding: 10px 14px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid #000;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sim-banner-conflict {
+            background-color: var(--accent-red-light);
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        .sim-banner-overdue {
+            background-color: var(--accent-yellow-light);
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+        }
+
+        .sim-banner-unpaid {
+            background-color: #f3f4f6;
+            border-color: #999999;
+            color: #444444;
+        }
+
+        .sim-meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .sim-meta-item span {
+            display: block;
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .sim-meta-item strong {
+            font-weight: 600;
+        }
+
+        .sim-reason-box {
+            background-color: var(--bg-panel);
+            border: var(--border-primary);
+            padding: 12px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .sim-reason-box span {
+            display: block;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .comment-field-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .sim-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .sim-textarea {
+            width: 100%;
+            height: 60px;
+            border: var(--border-primary);
+            padding: 8px;
+            font-family: inherit;
+            font-size: 12px;
+            outline: none;
+            resize: none;
+        }
+
+        .sim-textarea:focus {
+            border-color: var(--accent-green);
+        }
+
+        .comment-err {
+            font-size: 10px;
+            color: var(--accent-red);
+            margin-top: 4px;
+            display: none;
+        }
+
+        /* Action Buttons */
+        .sim-action-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-sim-action {
+            flex: 1;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            border: var(--border-primary);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .btn-sim-approve {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .btn-sim-approve:hover {
+            background-color: var(--accent-green);
+            border-color: var(--accent-green);
+        }
+
+        .btn-sim-reject {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .btn-sim-reject:hover {
+            background-color: var(--accent-red-light);
+            color: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
+        /* Confirmation mini-modal */
+        .sim-confirm-panel {
+            display: none;
+            background-color: #ffffff;
+            border: var(--border-thick);
+            padding: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            z-index: 20;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .sim-confirm-panel.active {
+            display: block;
+        }
+
+        /* Toasts */
+        .sim-toast {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-30px);
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #fff;
+            z-index: 50;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .sim-toast.active {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Hover card for leave stats breakdown */
+        .hover-card-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            border: var(--border-thick);
+            padding: 15px;
+            z-index: 100;
+            font-size: 11px;
+            width: 320px;
+            box-shadow: 5px 5px 0px #000;
+            top: 105%;
+            left: 0;
+            text-align: left;
+            color: #000000;
+        }
+        
+        .sim-tile:hover .hover-card-content {
+            display: block;
+        }
+        
+        .hover-card-content h5 {
+            font-size: 11px;
+            font-weight: 700;
+            border-bottom: 1px solid #000;
+            padding-bottom: 4px;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            color: var(--accent-green);
+        }
+        
+        .hover-card-content h5:first-child {
+            margin-top: 0;
+        }
+        
+        .hover-card-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 4px;
+        }
+        
+        .hover-card-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Figma tab styling overrides */
+        .figma-tab-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+
+        .figma-tab-btn {
+            border: var(--border-primary);
+            background-color: var(--bg-card);
+            color: #000;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .figma-tab-btn:hover {
+            background-color: var(--accent-green-light);
+        }
+
+        .figma-tab-btn.active-tab {
+            background-color: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        .figma-embed-container {
+            border: var(--border-thick);
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 6px 6px 0px #000;
+            margin-bottom: 1rem;
+        }
+
+        .figma-embed-meta {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Pagination button styling overrides */
+        .sim-pagination-bar button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background-color: #f8f8f6 !important;
+            color: #888 !important;
+            border-color: #ccc !important;
+        }
+        
+        .sim-pagination-bar button:disabled:hover {
+            background-color: #f8f8f6 !important;
+            color: #888 !important;
+            border-color: #ccc !important;
+        }
+        
+        /* Role Switcher button */
+        #btn-role-switcher {
+            border: 1px solid #000000;
+            background-color: transparent;
+            color: #000000;
+            padding: 6px 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        #btn-role-switcher:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        /* Employee View Specifics */
+        @media (max-width: 768px) {
+            #sim-employee-view > div > div {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* Flow Step Alternating Layout */
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+        .flow-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .flow-step-text {
+            flex: 1.2;
+        }
+        .flow-step-visual {
+            flex: 1;
+            border: var(--border-primary);
+            background-color: var(--bg-card);
+            padding: 1.5rem;
+            box-shadow: 6px 6px 0px #000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        .flow-step-visual h4 {
+            border-bottom: var(--border-primary);
+            padding-bottom: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        @media (max-width: 900px) {
+            .flow-step {
+                flex-direction: column !important;
+                gap: 2rem;
+            }
+        }
+
+        /* Editorial Cards for UX Decisions & Reflection */
+        .editorial-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .editorial-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 900px) {
+            .editorial-grid-3, .editorial-grid-2 {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+            }
+        }
+        .editorial-card {
+            border: var(--border-primary);
+            background-color: var(--bg-card);
+            padding: 2rem;
+            box-shadow: 4px 4px 0px #000000;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .editorial-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0px #000000;
+        }
+        .editorial-card-icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+            color: var(--accent-green);
+        }
+        .editorial-card h3, .editorial-card h4 {
+            margin: 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .editorial-card p {
+            margin: 0 !important;
+            font-size: 13px !important;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header bar (#topbar) -->
+    <header id="topbar">
+        <h1 id="nameplate"><a href="#">rima debnath</a></h1>
+        <nav id="navbar">
+            <ul>
+                <li><h2><a href="#">work</a></h2></li>
+                <li><h2><a href="#">skills</a></h2></li>
+                <li><h2><a href="#">about</a></h2></li>
+                <li><h2><a href="#" target="_blank">resume</a></h2></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="work-page-content">
+        
+        <!-- Case Study Title Block -->
+        <div class="work-page-header">
+            <h1 class="work-page-header-title">Leave Management System (LMS)</h1>
+            <h3 class="up-next-role">Product Design / End-to-End Employee & Manager Experience</h3>
+        </div>
+
+        <!-- Info Row Summary -->
+        <div class="work-page-info-row">
+            <div class="info-cell">
+                <span>Duration</span>
+                <strong>June 2026</strong>
+            </div>
+            <div class="info-cell">
+                <span>Context</span>
+                <strong>Lead Product Design Case Study</strong>
+            </div>
+            <div class="info-cell">
+                <span>Key Goal</span>
+                <strong>Self-Service & Context-Aware Decisions</strong>
+            </div>
+            <div class="info-cell">
+                <span>Focus</span>
+                <strong>Employee & Manager Portal Experiences</strong>
+            </div>
+        </div>
+
+        <!-- Overview Block -->
+        <div class="work-page-overview">
+            <h4 class="work-page-overview-content">
+                Administrative gaps in leave systems create severe bottlenecks. Employees face friction when applying, struggle to track request status, and remain in the dark about their actual leave balances. At the same time, managers struggle with forgotten approvals, team schedule conflicts, low leave visibility, and delayed decision-making. 
+                <br><br>
+                This case study details a unified <i class="underline green-underline"><strong>Leave Management System (LMS)</strong></i> designed to streamline workflows for both sides. By combining an intuitive self-service portal for employees with a highly contextual dashboard for managers, the platform reduces administrative friction, highlights overlaps automatically, and accelerates approval cycles.
+            </h4>
+        </div>
+
+        <!-- Skills Block -->
+        <div class="work-page-skills-main">
+            <div class="work-page-skills">
+                <h3>Design Focus</h3>
+                <div class="skills-boxes">
+                    <span class="skill-tag">Interaction Architecture</span>
+                    <span class="skill-tag">User Flow Simplification</span>
+                    <span class="skill-tag">Contextual Alerting</span>
+                    <span class="skill-tag">Wireframing</span>
+                </div>
+            </div>
+            <div class="work-page-skills">
+                <h3>Technical Tools</h3>
+                <div class="skills-boxes">
+                    <span class="skill-tag">Figma Canvas</span>
+                    <span class="skill-tag">Interaction Wireframes</span>
+                    <span class="skill-tag">Sitemap Mapping</span>
+                    <span class="skill-tag">HTML5 & JS Sandbox</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: The Administrative Gap -->
+        <section class="case-section section-grid">
+            <div class="section-left">
+                <h2>The Gap</h2>
+            </div>
+            <div class="section-right">
+                <p>
+                    Through user research, we discovered that leave management is a multi-sided loop of uncertainty. Employees and managers approach the process with distinct questions that traditional tools fail to address:
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-green);">Employee Questions</h4>
+                        <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">
+                            • How many leave days do I have left?<br>
+                            • Has my manager seen or approved my request?<br>
+                            • What is the status of my pending application?
+                        </p>
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-red);">Manager Questions</h4>
+                        <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">
+                            • Who else on the team is absent on these exact dates?<br>
+                            • Are there any overlaps or calendar conflicts?<br>
+                            • Is this request overdue (>48 hours)?<br>
+                            • Should I approve this or ask for clarification?
+                        </p>
+                    </div>
+                </div>
+                <p>
+                    When these answers are scattered across disjointed spreadsheets, email threads, and calendar apps, employees feel anxious about their planning, and managers delay decisions or make accidental approvals that cause staffing shortages.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Pain Points & Mapped Solutions -->
+        <section class="case-section section-grid">
+            <div class="section-left">
+                <h2>Pain Points Matrix</h2>
+            </div>
+            <div class="section-right">
+                <p>
+                    We mapped qualitative complaints from both employees and managers into clear functional requirements to design a symmetric, feedback-driven system.
+                </p>
+                
+                <h3 style="margin-bottom: 1rem; color: var(--accent-red); font-size: 18px;">Manager Pain Points</h3>
+                <div class="matrix-grid" style="margin-bottom: 3rem;">
+                    <div class="matrix-card">
+                        <div class="matrix-card-flag">1. Team Blindspots</div>
+                        <h3>Absenteeism Conflicts</h3>
+                        <p>Accidental concurrent approvals. We solved this by implementing real-time overlapping date alerts and team availability sidebars directly inside the queue view.</p>
+                    </div>
+                    
+                    <div class="matrix-card">
+                        <div class="matrix-card-flag">2. Forgotten Replies</div>
+                        <h3>Neglected Requests</h3>
+                        <p>Applications sitting indefinitely. Resolved using clear "Overdue" tiles triggering alerts after 24–48 hours, keeping the queue top-of-mind.</p>
+                    </div>
+                    
+                    <div class="matrix-card">
+                        <div class="matrix-card-flag">3. Balance Hunting</div>
+                        <h3>Data Fragmentation</h3>
+                        <p>Looking up balances is exhausting. Banners inside the detail pane warn managers instantly if an employee has zero days left, noting that approval converts it to unpaid leave.</p>
+                    </div>
+                    
+                    <div class="matrix-card">
+                        <div class="matrix-card-flag">4. Missing Audit Trails</div>
+                        <h3>Loss of Context</h3>
+                        <p>No logged decision reasoning. Solved by requiring rejection reasons, which are stored alongside timestamps and synchronized with employee workspaces.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 1rem; color: var(--accent-green); font-size: 18px;">Employee Pain Points</h3>
+                <div class="matrix-grid">
+                    <div class="matrix-card">
+                        <div class="matrix-card-flag">1. Balance Uncertainty</div>
+                        <h3>Unknown Leave Balance</h3>
+                        <p>Anxiety and manual email confirmation. Solved by showing clear balance metrics directly at the top of the employee dashboard, auto-calculating in real-time.</p>
+                    </div>
+                    
+                    <div class="matrix-card">
+                        <div class="matrix-card-flag">2. Status Blindness</div>
+                        <h3>No Request Tracking</h3>
+                        <p>Employees are left wondering if requests are received. Solved with a progress tracker log showing real-time state badges (Pending, Approved, Rejected).</p>
+                    </div>
+                    
+                    <div class="matrix-card">
+                        <div class="matrix-card-flag">3. High Friction Loop</div>
+                        <h3>Manual Email Follow-up</h3>
+                        <p>Forced to send calendar invites and nudge emails. Resolved through direct dashboard sync and automated notifications when a manager updates status.</p>
+                    </div>
+                    
+                    <div class="matrix-card">
+                        <div class="matrix-card-flag">4. Scheduling Delays</div>
+                        <h3>Delayed Planning Responses</h3>
+                        <p>Cannot book flights or plan without approval. Solved by giving managers a rapid-review modal overlay to complete approvals within seconds.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Solution Strategy -->
+        <section class="case-section" style="width: 100%;">
+            <div style="margin-bottom: 2rem;">
+                <h2>Solution Strategy</h2>
+                <p style="margin-top: 1rem;">
+                    To establish a balanced, high-efficiency system, we designed a unified architecture that connects the two user roles. The strategy focuses on bridging the communication and visibility gap through key pillars:
+                </p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Centralized Dashboards</h4>
+                    <p style="font-size:12px; color: var(--text-secondary);">Separate portals customized for each role. Employees get leave summaries and balance logs; managers get action-oriented queues and quick-stat counters.</p>
+                </div>
+                <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Context-Aware Alerts</h4>
+                    <p style="font-size:12px; color: var(--text-secondary);">Direct warning tags visible to managers when reviewing a request—pointing out insufficient balances, overdue queue items, or high-priority notifications.</p>
+                </div>
+                <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Conflict Detection</h4>
+                    <p style="font-size:12px; color: var(--text-secondary);">Real-time cross-referencing with other team member schedules to instantly flag overlaps before a manager accidentally approves double absences.</p>
+                </div>
+                <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Auto Calculations</h4>
+                    <p style="font-size:12px; color: var(--text-secondary);">Interactive leave balance logic that auto-calculates total request duration and warns employees of potential unpaid leave before submission.</p>
+                </div>
+                <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Transparent Tracking</h4>
+                    <p style="font-size:12px; color: var(--text-secondary);">Real-time status changes sync directly to the employee's history log, eliminating manual messaging and follow-ups.</p>
+                </div>
+                <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Guided Review Flow</h4>
+                    <p style="font-size:12px; color: var(--text-secondary);">A dedicated detail overlay with required comments for rejections, preserving contextual audit trails.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Hybrid System Architecture & BPMN Workflow -->
+        <section class="case-section section-grid">
+            <div class="section-left">
+                <h2>System Architecture & Workflow</h2>
+            </div>
+            <div class="section-right">
+                <p>
+                    Rather than a simple sitemap, the diagram below maps the complete BPMN workflow and system architecture of the Leave Management System. It details the logical decision diamonds, state changes, and connections to shared system services that synchronize the Employee and Manager experiences.
+                </p>
+                
+                <div class="sitemap-container" style="background-color: var(--bg-card); border: var(--border-primary); padding: 1.5rem; overflow-x: auto;">
+                    <svg viewBox="0 0 1000 800" class="sitemap-svg" xmlns="http://www.w3.org/2000/svg" style="min-width: 900px; width: 100%; height: auto; display: block;">
+                        <defs>
+                            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                <path d="M2 2L8 5L2 8" fill="none" stroke="#000" stroke-width="1.2" stroke-linecap="round"/>
+                            </marker>
+                            <marker id="arr-dashed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                <path d="M2 2L8 5L2 8" fill="none" stroke="#666" stroke-width="1.2" stroke-linecap="round"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Central System Boundary Header -->
+                        <rect x="10" y="10" width="980" height="780" fill="none" stroke="#e0e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+                        
+                        <!-- Root Heading -->
+                        <rect x="350" y="25" width="300" height="35" fill="#000" stroke="#000" stroke-width="1.5"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central" x="500" y="42.5">Leave Management System (LMS)</text>
+
+                        <!-- Main Channel Dividers -->
+                        <line x1="330" y1="80" x2="330" y2="760" stroke="#e0e0d8" stroke-width="1" stroke-dasharray="2,2"/>
+                        <line x1="670" y1="80" x2="670" y2="760" stroke="#e0e0d8" stroke-width="1" stroke-dasharray="2,2"/>
+
+                        <!-- Column Labels -->
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#0D5C34" x="40" y="85">EMPLOYEE PORTAL CHANNEL</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#666666" x="350" y="85">SHARED SYSTEM SERVICES</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#D95D39" x="690" y="85">MANAGER PORTAL CHANNEL</text>
+
+                        <!-- MAIN PORTAL NODES -->
+                        <!-- Employee Portal Node -->
+                        <rect x="40" y="110" width="250" height="40" fill="#EBF5EE" stroke="#0D5C34" stroke-width="1.5"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" fill="#0D5C34" text-anchor="middle" dominant-baseline="central" x="165" y="130">Employee Self-Service Portal</text>
+                        
+                        <!-- Manager Portal Node -->
+                        <rect x="710" y="110" width="250" height="40" fill="#FDF2F0" stroke="#D95D39" stroke-width="1.5"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" fill="#D95D39" text-anchor="middle" dominant-baseline="central" x="835" y="130">Manager Decision Portal</text>
+
+                        <!-- Connect Main Root to Portals -->
+                        <path d="M 500,60 L 500,75 L 165,75 L 165,110" fill="none" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <path d="M 500,60 L 500,75 L 835,75 L 835,110" fill="none" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+
+                        <!-- ================= EMPLOYEE FLOW ================= -->
+                        <!-- 1. Dashboard -->
+                        <line x1="165" y1="150" x2="165" y2="180" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <rect x="40" y="180" width="250" height="40" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#000" text-anchor="middle" x="165" y="193">Dashboard View</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" text-anchor="middle" x="165" y="206">Active stats + Balance tiles</text>
+
+                        <!-- 2. Quick Apply Action -->
+                        <line x1="165" y1="220" x2="165" y2="250" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <rect x="40" y="250" width="250" height="40" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#000" text-anchor="middle" x="165" y="263">Trigger Quick Apply</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" text-anchor="middle" x="165" y="276">Opens application drawer</text>
+
+                        <!-- 3. Apply Leave Form -->
+                        <line x1="165" y1="290" x2="165" y2="320" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <rect x="40" y="320" width="250" height="55" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#000" text-anchor="middle" x="165" y="333">Apply Leave Form</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" text-anchor="middle" x="165" y="347">Input type, dates, reason</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" text-anchor="middle" x="165" y="361">System: compute Auto Duration</text>
+
+                        <!-- 4. Decision Diamond: Enough Leave Balance? -->
+                        <line x1="165" y1="375" x2="165" y2="395" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <polygon points="165,395 240,420 165,445 90,420" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="165" y="415">◇ Enough Leave</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="165" y="425">Balance?</text>
+
+                        <!-- NO Branch: Overdraft Unpaid warning -->
+                        <path d="M 240,420 L 265,420 L 265,470 L 165,470" fill="none" stroke="#666" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arr-dashed)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#666" x="245" y="413">NO</text>
+                        <rect x="275" y="405" width="50" height="30" fill="#f8f8f6" stroke="#666" stroke-dasharray="3,2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" fill="#555" text-anchor="middle" x="300" y="420">Unpaid Alert</text>
+
+                        <!-- YES Branch goes straight down -->
+                        <line x1="165" y1="445" x2="165" y2="490" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#000" x="170" y="455">YES</text>
+
+                        <!-- 5. Review Screen Node -->
+                        <rect x="40" y="490" width="250" height="40" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#000" text-anchor="middle" x="165" y="503">Review details screen</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" text-anchor="middle" x="165" y="516">Verify details & overdraft status</text>
+
+                        <!-- 6. Decision Diamond: Validation Passed? -->
+                        <line x1="165" y1="530" x2="165" y2="550" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <polygon points="165,550 235,575 165,600 95,575" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="165" y="570">◇ Validation</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="165" y="580">Passed?</text>
+
+                        <!-- NO Branch: Return to Apply form -->
+                        <path d="M 95,575 L 20,575 L 20,347 L 40,347" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr-dashed)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#666" x="25" y="565">NO</text>
+
+                        <!-- YES Branch down -->
+                        <line x1="165" y1="600" x2="165" y2="625" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#000" x="170" y="608">YES</text>
+
+                        <!-- 7. Decision Diamond: Confirm Submission? -->
+                        <polygon points="165,625 240,650 165,675 90,650" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="165" y="645">◇ Confirm</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="165" y="655">Submission?</text>
+
+                        <!-- NO Branch: Return to apply -->
+                        <path d="M 240,650 L 265,650 L 265,510 L 290,510" fill="none" stroke="#666" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr-dashed)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#666" x="245" y="642">NO (Edit)</text>
+
+                        <!-- YES Branch down to success -->
+                        <line x1="165" y1="675" x2="165" y2="700" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#000" x="170" y="683">YES</text>
+
+                        <!-- Success state -->
+                        <rect x="40" y="700" width="250" height="40" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#000" text-anchor="middle" x="165" y="713">Success Modal View</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" text-anchor="middle" x="165" y="726">Get Request ID & Queue Redirect</text>
+
+
+                        <!-- ================= SHARED SERVICES ================= -->
+                        <!-- Pill-shaped service engines -->
+                        <g transform="translate(370,120)">
+                            <rect x="0" y="0" width="260" height="30" rx="15" fill="#f4f4f2" stroke="#666" stroke-width="1"/>
+                            <text font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#444" text-anchor="middle" dominant-baseline="central" x="130" y="15">Leave Balance Engine</text>
+                        </g>
+                        <g transform="translate(370,180)">
+                            <rect x="0" y="0" width="260" height="30" rx="15" fill="#f4f4f2" stroke="#666" stroke-width="1"/>
+                            <text font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#444" text-anchor="middle" dominant-baseline="central" x="130" y="15">Conflict Detection Engine</text>
+                        </g>
+                        <g transform="translate(370,240)">
+                            <rect x="0" y="0" width="260" height="30" rx="15" fill="#f4f4f2" stroke="#666" stroke-width="1"/>
+                            <text font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#444" text-anchor="middle" dominant-baseline="central" x="130" y="15">Calendar Synchronization</text>
+                        </g>
+                        <g transform="translate(370,300)">
+                            <rect x="0" y="0" width="260" height="30" rx="15" fill="#f4f4f2" stroke="#666" stroke-width="1"/>
+                            <text font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#444" text-anchor="middle" dominant-baseline="central" x="130" y="15">Notification Service</text>
+                        </g>
+                        <g transform="translate(370,360)">
+                            <rect x="0" y="0" width="260" height="30" rx="15" fill="#f4f4f2" stroke="#666" stroke-width="1"/>
+                            <text font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#444" text-anchor="middle" dominant-baseline="central" x="130" y="15">Approval Workflow Router</text>
+                        </g>
+                        <g transform="translate(370,420)">
+                            <rect x="0" y="0" width="260" height="30" rx="15" fill="#f4f4f2" stroke="#666" stroke-width="1"/>
+                            <text font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#444" text-anchor="middle" dominant-baseline="central" x="130" y="15">System Audit Trail Log</text>
+                        </g>
+                        <g transform="translate(370,480)">
+                            <rect x="0" y="0" width="260" height="30" rx="15" fill="#f4f4f2" stroke="#666" stroke-width="1"/>
+                            <text font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#444" text-anchor="middle" dominant-baseline="central" x="130" y="15">Live Status Tracking</text>
+                        </g>
+                        <g transform="translate(370,540)">
+                            <rect x="0" y="0" width="260" height="30" rx="15" fill="#f4f4f2" stroke="#666" stroke-width="1"/>
+                            <text font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" fill="#444" text-anchor="middle" dominant-baseline="central" x="130" y="15">Role-Based Permissions</text>
+                        </g>
+
+                        <!-- System Connections (dashed lines) -->
+                        <path d="M 290,347 L 370,135" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3"/>
+                        <path d="M 290,347 L 370,195" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3"/>
+                        <path d="M 290,720 L 370,375" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3"/>
+                        <path d="M 290,720 L 370,495" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3"/>
+
+
+                        <!-- ================= MANAGER FLOW ================= -->
+                        <!-- 1. Dashboard -->
+                        <line x1="835" y1="150" x2="835" y2="180" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <rect x="710" y="180" width="250" height="40" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#000" text-anchor="middle" x="835" y="193">Dashboard Overview</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" text-anchor="middle" x="835" y="206">Overview of tiles + Team metrics</text>
+
+                        <!-- 2. Decision Diamond: Pending Requests? -->
+                        <line x1="835" y1="220" x2="835" y2="245" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <polygon points="835,245 910,270 835,295 760,270" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="835" y="266">◇ Pending</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="835" y="276">Requests?</text>
+
+                        <!-- NO Branch: Empty state -->
+                        <line x1="910" y1="270" x2="935" y2="270" stroke="#666" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arr-dashed)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#666" x="914" y="262">NO</text>
+                        <rect x="935" y="250" width="50" height="40" fill="#f8f8f6" stroke="#666" stroke-dasharray="3,2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" fill="#555" text-anchor="middle" x="960" y="265">Empty State</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" fill="#888" text-anchor="middle" x="960" y="278">"Caught up"</text>
+
+                        <!-- YES Branch down to queue -->
+                        <line x1="835" y1="295" x2="835" y2="330" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#000" x="840" y="308">YES</text>
+
+                        <!-- 3. Pending Queue -->
+                        <rect x="710" y="330" width="250" height="40" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#000" text-anchor="middle" x="835" y="343">Pending Request Queue</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" text-anchor="middle" x="835" y="356">Filters, sorting, search</text>
+
+                        <!-- 4. Review Request overlay -->
+                        <line x1="835" y1="370" x2="835" y2="400" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <rect x="710" y="400" width="250" height="45" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700" fill="#000" text-anchor="middle" x="835" y="415">Review Request Pane</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" text-anchor="middle" x="835" y="428">Detailed metadata modal drawer</text>
+
+                        <!-- 5. Decision Diamond: Team Conflict? -->
+                        <line x1="835" y1="445" x2="835" y2="465" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <polygon points="835,465 910,490 835,515 760,490" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="835" y="485">◇ Team Conflict?</text>
+
+                        <!-- YES -> Trigger badge warning -->
+                        <line x1="910" y1="490" x2="935" y2="490" stroke="#d95d39" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr-dashed)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#d95d39" x="914" y="482">YES</text>
+                        <rect x="935" y="475" width="50" height="30" fill="#FDF2F0" stroke="#d95d39" stroke-dasharray="3,2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" fill="#d95d39" text-anchor="middle" x="960" y="490">Conflict Badge</text>
+
+                        <!-- Down to Overdue -->
+                        <line x1="835" y1="515" x2="835" y2="535" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" x="840" y="522">NO</text>
+
+                        <!-- 6. Decision Diamond: Request Overdue? -->
+                        <polygon points="835,535 910,560 835,585 760,560" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="835" y="555">◇ Request</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="835" y="565">Overdue?</text>
+
+                        <!-- YES -> Trigger badge warning -->
+                        <line x1="910" y1="560" x2="935" y2="560" stroke="#d95d39" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr-dashed)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#d95d39" x="914" y="552">YES</text>
+                        <rect x="935" y="545" width="50" height="30" fill="#FFF9E6" stroke="#df9a00" stroke-dasharray="3,2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" fill="#df9a00" text-anchor="middle" x="960" y="560">Overdue tag</text>
+
+                        <!-- Down to Zero Balance -->
+                        <line x1="835" y1="585" x2="835" y2="605" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" x="840" y="592">NO</text>
+
+                        <!-- 7. Decision Diamond: Zero Balance? -->
+                        <polygon points="835,605 910,630 835,655 760,630" fill="#fff" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#000" text-anchor="middle" x="835" y="625">◇ Zero Balance?</text>
+
+                        <!-- YES -> Trigger unpaid note banner -->
+                        <line x1="910" y1="630" x2="935" y2="630" stroke="#666" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr-dashed)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#666" x="914" y="622">YES</text>
+                        <rect x="935" y="615" width="50" height="30" fill="#eeeeee" stroke="#cccccc" stroke-dasharray="3,2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" fill="#666" text-anchor="middle" x="960" y="630">Unpaid alert</text>
+
+                        <!-- Down to Approve/Reject decision -->
+                        <line x1="835" y1="655" x2="835" y2="680" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" fill="#666" x="840" y="662">NO</text>
+
+                        <!-- 8. Decision Diamond: Approve or Reject? -->
+                        <polygon points="835,680 910,705 835,730 760,705" fill="#000" stroke="#000" stroke-width="1.2"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#fff" text-anchor="middle" x="835" y="700">◇ Approve or</text>
+                        <text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="700" fill="#fff" text-anchor="middle" x="835" y="710">Reject?</text>
+
+                        <!-- Connect back to shared services from Manager decisions -->
+                        <path d="M 760,705 L 630,705 L 630,315" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arr-dashed)"/>
+                        <path d="M 760,705 L 630,705 L 630,255" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arr-dashed)"/>
+                        <path d="M 760,705 L 630,705 L 630,435" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arr-dashed)"/>
+
+                        <!-- Loop back returning manager to dashboard -->
+                        <path d="M 835,730 L 835,770 L 990,770 L 990,200 L 960,200" fill="none" stroke="#000" stroke-width="1.2" marker-end="url(#arr)"/>
+                        <text font-family="IBM Plex Mono, monospace" font-size="8" font-weight="700" fill="#000" x="940" y="760">Dashboard Refresh & Queue Update Loop</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Live Interactive Wireframe Simulator (Stretched Full Width) -->
+        <section class="case-section" style="width: 100%;">
+            <div style="margin-bottom: 2rem;">
+                <h2 class="underline green-underline" style="display:inline-block;">Interactive Prototype Simulator</h2>
+                <p style="font-size: 16px; color: var(--text-secondary); margin-top: 1rem; max-width: 800px;">
+                    Below is an interactive live simulator constructed directly from the wireframe constraints. Test the end-to-end journey of a manager by reviewing requests, observing dynamic alerts (conflict warnings, zero balances, and overdue markers), writing remarks, and executing actions.
+                </p>
+            </div>
+
+            <!-- SIMULATOR INTERACTION COMPONENT -->
+            <div class="simulator-window">
+                
+                <!-- Top Window controls -->
+                <div class="sim-header">
+                    <div class="sim-window-dots">
+                        <div class="sim-dot"></div>
+                        <div class="sim-dot"></div>
+                        <div class="sim-dot"></div>
+                    </div>
+                    <div>LMS Portal Prototype v1.0 — Manager View</div>
+                    <div>
+                        <button onclick="resetSimulation()" style="background:transparent; border:1px solid #fff; color:#fff; font-family:inherit; font-size:10px; padding:2px 8px; cursor:pointer; font-weight:700; transition:var(--transition);" onmouseover="this.style.backgroundColor='#fff'; this.style.color='#000';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#fff';">Reset Demo</button>
+                    </div>
+                </div>
+
+
+                    <!-- Simulator Navbar -->
+                    <div class="sim-nav">
+                        <div class="sim-logo">
+                            <span class="sim-logo-ico">LMS</span>
+                            <span id="sim-portal-title">Manager Portal</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <button id="btn-role-switcher" onclick="toggleRole()">Switch to Employee View</button>
+                            <div class="sim-profile" id="sim-profile-box">
+                                <span>S. Jenkins (Engineering Mgr)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Toast popup feedback -->
+                    <div id="sim-toast" class="sim-toast">✓ Approved - Employee notified</div>
+
+                    <!-- Simulator Content Area -->
+                    <div class="sim-body">
+                        
+                        <!-- Manager View Container -->
+                        <div id="sim-manager-view" style="display: block; width: 100%;">
+                            <!-- Left Main Panel -->
+                            <div style="display: flex; flex-direction: column;">
+                            
+                            <!-- 3 Quick Tiles (Zone 1) -->
+                            <div class="sim-tile-grid">
+                                <div class="sim-tile" id="tile-pending">
+                                    <div class="sim-tile-title">Pending Requests</div>
+                                    <div class="sim-tile-val" id="count-pending">3</div>
+                                    <div class="sim-tile-meta">require review</div>
+                                </div>
+                                <div class="sim-tile" id="tile-leave" style="position: relative;">
+                                    <div class="sim-tile-title">On Leave Today</div>
+                                    <div class="sim-tile-val" id="count-leave-today">1</div>
+                                    <div class="sim-tile-meta">of 8 members away</div>
+                                    
+                                    <!-- Hover card list popup -->
+                                    <div class="hover-card-content" id="tile-leave-tooltip">
+                                        <!-- Replaced dynamically in Javascript -->
+                                    </div>
+                                </div>
+                                <div class="sim-tile" id="tile-overdue">
+                                    <div class="sim-tile-title">Overdue Alerts</div>
+                                    <div class="sim-tile-val" id="count-overdue" style="color: var(--accent-red);">1</div>
+                                    <div class="sim-tile-meta">exceeded 48h limit</div>
+                                </div>
+                            </div>
+
+                            <!-- Pending Table (Zone 2) -->
+                            <div class="sim-main-panel">
+                                <div class="sim-panel-title-row">
+                                    <h4 style="margin:0; font-weight:700;">Pending Request Queue</h4>
+                                    <div style="font-size: 11px; color: var(--text-muted);" id="table-showing-label">Showing 1–3 of 3</div>
+                                </div>
+
+                                <!-- Filter tools mockup -->
+                                <div class="sim-filters-bar">
+                                    <input type="text" placeholder="Search by name, role..." class="sim-input-search" id="sim-search" oninput="searchQueue()">
+                                    <select class="sim-select-filter" id="sim-filter" onchange="searchQueue()">
+                                        <option value="all">Filter: All Types</option>
+                                        <option value="Casual">Casual</option>
+                                        <option value="Sick">Sick</option>
+                                        <option value="Earned">Earned</option>
+                                    </select>
+                                    <select class="sim-select-filter" id="sim-sort" onchange="searchQueue()">
+                                        <option value="default">Sort: Default</option>
+                                        <option value="duration-asc">Duration: Low to High</option>
+                                        <option value="duration-desc">Duration: High to Low</option>
+                                        <option value="name-asc">Name: A-Z</option>
+                                    </select>
+                                </div>
+
+                                <!-- Main Data Table -->
+                                <div class="sim-table-wrap">
+                                    <table class="sim-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Employee</th>
+                                                <th>Leave Type</th>
+                                                <th>Dates</th>
+                                                <th>Duration</th>
+                                                <th>Flags</th>
+                                                <th style="text-align: right;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sim-queue-body">
+                                            <!-- Row 1: Rima Deb -->
+                                            <tr class="sim-row" id="row-rima">
+                                                <td>
+                                                    <div class="employee-cell">
+                                                        <span class="emp-name">Rima Deb</span>
+                                                        <span class="emp-role">QA Analyst</span>
+                                                    </div>
+                                                </td>
+                                                <td>Casual</td>
+                                                <td>Dec 25 - Dec 26</td>
+                                                <td>2 days</td>
+                                                <td>—</td>
+                                                <td style="text-align: right;">
+                                                    <button class="btn-review" onclick="openReview('rima')">Review</button>
+                                                </td>
+                                            </tr>
+                                            <!-- Row 2: Priya R -->
+                                            <tr class="sim-row" id="row-priya">
+                                                <td>
+                                                    <div class="employee-cell">
+                                                        <span class="emp-name">Priya R.</span>
+                                                        <span class="emp-role">Frontend Eng.</span>
+                                                    </div>
+                                                </td>
+                                                <td>Sick</td>
+                                                <td>Nov 10 - Nov 11</td>
+                                                <td>2 days</td>
+                                                <td>
+                                                    <span class="badge badge-conflict">Conflict</span>
+                                                    <span class="badge badge-overdue">Overdue</span>
+                                                </td>
+                                                <td style="text-align: right;">
+                                                    <button class="btn-review" onclick="openReview('priya')">Review</button>
+                                                </td>
+                                            </tr>
+                                            <!-- Row 3: Amit K -->
+                                            <tr class="sim-row" id="row-amit">
+                                                <td>
+                                                    <div class="employee-cell">
+                                                        <span class="emp-name">Amit K.</span>
+                                                        <span class="emp-role">Backend Eng.</span>
+                                                    </div>
+                                                </td>
+                                                <td>Earned</td>
+                                                <td>Dec 24 - Dec 27</td>
+                                                <td>4 days</td>
+                                                <td>
+                                                    <span class="badge badge-conflict">Conflict</span>
+                                                    <span class="badge badge-unpaid">0 Bal</span>
+                                                </td>
+                                                <td style="text-align: right;">
+                                                    <button class="btn-review" onclick="openReview('amit')">Review</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- Empty state placeholder -->
+                                    <div id="sim-empty-state" style="display:none; text-align:center; padding:40px 10px; color: var(--text-muted);">
+                                        <div style="font-size:24px; margin-bottom:10px;">✓ All caught up!</div>
+                                        <p style="font-size:11px; margin-bottom:15px;">There are no pending leave requests remaining in your queue.</p>
+                                        <button class="btn-review" onclick="resetSimulation()" style="padding:8px 16px;">Reset Simulation Demo</button>
+                                    </div>
+                                    
+                                    <!-- Pagination Footer -->
+                                    <div class="sim-pagination-bar" id="sim-pagination-bar" style="display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid #eee; margin-top: 15px; font-size: 12px;">
+                                        <div id="pagination-info">Showing 1-3 of 8</div>
+                                        <div style="display: flex; gap: 8px;">
+                                            <button class="btn-review" id="btn-prev-page" onclick="changePage(-1)" style="background-color:#ffffff; color:#000; border: 1px solid #000; font-weight:600;">[ &lt; Prev ]</button>
+                                            <button class="btn-review" id="btn-next-page" onclick="changePage(1)" style="background-color:#ffffff; color:#000; border: 1px solid #000; font-weight:600;">[ Next &gt; ]</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!-- Employee View Container -->
+                        <div id="sim-employee-view" style="display: none; width: 100%;">
+                            <div style="display: flex; flex-direction: column; gap: 25px;">
+                                <!-- Dashboard Header & Primary CTA -->
+                                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 5px;">
+                                    <h3 style="margin:0; font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:700; text-transform:uppercase;">Employee Dashboard</h3>
+                                    <button class="btn-review" onclick="openApplyForm()" style="background-color: var(--accent-green);">[ Apply for Leave ]</button>
+                                </div>
+
+                                <!-- 1. Leave Balance Cards -->
+                                <div class="sim-tile-grid">
+                                    <div class="sim-tile" style="cursor: default;">
+                                        <div class="sim-tile-title">Annual Leave</div>
+                                        <div class="sim-tile-val" id="balance-annual">14</div>
+                                        <div class="sim-tile-meta">days remaining</div>
+                                    </div>
+                                    <div class="sim-tile" style="cursor: default;">
+                                        <div class="sim-tile-title">Medical Leave</div>
+                                        <div class="sim-tile-val" id="balance-medical">7</div>
+                                        <div class="sim-tile-meta">days remaining</div>
+                                    </div>
+                                    <div class="sim-tile" style="cursor: default;">
+                                        <div class="sim-tile-title">Casual Leave</div>
+                                        <div class="sim-tile-val" id="balance-casual">5</div>
+                                        <div class="sim-tile-meta">days remaining</div>
+                                    </div>
+                                </div>
+
+                                <!-- 3. Recent Leave Requests (full width) -->
+                                <div class="sim-main-panel" style="width: 100%;">
+                                    <div class="sim-panel-title-row" style="border-bottom: 1px solid #000; padding-bottom: 8px; margin-bottom: 15px;">
+                                        <h4 style="margin:0; font-weight:700; font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase;">Recent Leave Requests</h4>
+                                    </div>
+                                    <div class="sim-table-wrap">
+                                        <table class="sim-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Leave Type</th>
+                                                    <th>Dates</th>
+                                                    <th>Duration</th>
+                                                    <th style="text-align: right;">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="emp-recent-body">
+                                                <!-- Dynamically populated -->
+                                            </tbody>
+                                        </table>
+                                        <div id="emp-recent-empty" style="display:none; text-align:center; padding:20px; color:var(--text-muted); font-size:11px;">
+                                            No recent leave requests.
+                                        </div>
+                                    </div>
+                                    <!-- Pagination for Recent requests -->
+                                    <div class="sim-pagination-bar" id="recent-pagination-bar" style="display: none; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid #eee; margin-top: 15px; font-size: 12px;">
+                                        <div id="recent-pagination-info">Showing 1-3 of 3</div>
+                                        <div style="display: flex; gap: 8px;">
+                                            <button class="btn-review" id="btn-recent-prev" onclick="changeRecentPage(-1)" style="background-color:#ffffff; color:#000; border: 1px solid #000; font-weight:600;">[ &lt; Prev ]</button>
+                                            <button class="btn-review" id="btn-recent-next" onclick="changeRecentPage(1)" style="background-color:#ffffff; color:#000; border: 1px solid #000; font-weight:600;">[ Next &gt; ]</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 4. Approved Leave History (full width) -->
+                                <div class="sim-main-panel" style="width: 100%;">
+                                    <div class="sim-panel-title-row" style="border-bottom: 1px solid #000; padding-bottom: 8px; margin-bottom: 15px;">
+                                        <h4 style="margin:0; font-weight:700; font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase;">Approved Leave History</h4>
+                                    </div>
+                                    
+                                    <!-- Filters & Search Toolbar -->
+                                    <div class="sim-filter-row" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; font-family: 'IBM Plex Mono', monospace; font-size: 11px;">
+                                        <input type="text" id="emp-history-search" oninput="filterHistory()" class="sim-input-search" placeholder="Search ID, Type, Month..." style="flex: 1; min-width: 150px; padding: 4px 8px; border: var(--border-primary); outline: none;">
+                                        
+                                        <select id="emp-history-filter-type" onchange="filterHistory()" class="sim-select" style="padding: 4px; border: var(--border-primary); font-family: inherit; font-size: inherit;">
+                                            <option value="all">Type: All</option>
+                                            <option value="Annual">Annual</option>
+                                            <option value="Medical">Medical</option>
+                                            <option value="Casual">Casual</option>
+                                        </select>
+                                        
+                                        <select id="emp-history-filter-status" onchange="filterHistory()" class="sim-select" style="padding: 4px; border: var(--border-primary); font-family: inherit; font-size: inherit;">
+                                            <option value="all">Status: All</option>
+                                            <option value="Approved">Approved</option>
+                                        </select>
+
+                                        <select id="emp-history-filter-year" onchange="filterHistory()" class="sim-select" style="padding: 4px; border: var(--border-primary); font-family: inherit; font-size: inherit;">
+                                            <option value="all">Year: All</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2025">2025</option>
+                                        </select>
+
+                                        <select id="emp-history-sort" onchange="filterHistory()" class="sim-select" style="padding: 4px; border: var(--border-primary); font-family: inherit; font-size: inherit;">
+                                            <option value="newest">Newest First</option>
+                                            <option value="oldest">Oldest First</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="sim-table-wrap">
+                                        <table class="sim-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Request ID</th>
+                                                    <th>Leave Type</th>
+                                                    <th>Dates</th>
+                                                    <th>Duration</th>
+                                                    <th style="text-align: right;">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="emp-approved-body">
+                                                <!-- Dynamically populated -->
+                                            </tbody>
+                                        </table>
+                                        <div id="emp-approved-empty" style="display:none; text-align:center; padding:20px; color:var(--text-muted); font-size:11px;">
+                                            No approved leaves on record.
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Pagination for Approved History -->
+                                    <div class="sim-pagination-bar" id="history-pagination-bar" style="display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid #eee; margin-top: 15px; font-size: 12px;">
+                                        <div id="history-pagination-info">Showing 1-2 of 2</div>
+                                        <div style="display: flex; gap: 8px;">
+                                            <button class="btn-review" id="btn-history-prev" onclick="changeHistoryPage(-1)" style="background-color:#ffffff; color:#000; border: 1px solid #000; font-weight:600;">[ &lt; Prev ]</button>
+                                            <button class="btn-review" id="btn-history-next" onclick="changeHistoryPage(1)" style="background-color:#ffffff; color:#000; border: 1px solid #000; font-weight:600;">[ Next &gt; ]</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DRAWERS & OVERLAYS -->
+                    
+                    <!-- Contextual Detail Modal Overlay -->
+                    <div class="sim-drawer-overlay" id="sim-drawer-overlay">
+                        <div class="sim-drawer">
+                            <span class="sim-drawer-close" onclick="closeReview()">&times;</span>
+                            
+                            <h3 id="drawer-title" style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom:15px;">Review Leave Request</h3>
+
+                            <!-- Warnings Area -->
+                            <div id="drawer-warnings">
+                                <!-- Dynamic banners appended here -->
+                            </div>
+
+                            <!-- Metadata info -->
+                            <div class="sim-meta-grid">
+                                <div class="sim-meta-item">
+                                    <span>Employee Name</span>
+                                    <strong id="meta-name">Rima Deb</strong>
+                                </div>
+                                <div class="sim-meta-item">
+                                    <span>Role & Dept</span>
+                                    <strong id="meta-role">QA Analyst (QA Dept)</strong>
+                                </div>
+                                <div class="sim-meta-item">
+                                    <span>Leave Details</span>
+                                    <strong id="meta-type">Casual Leave</strong>
+                                </div>
+                                <div class="sim-meta-item">
+                                    <span>Duration</span>
+                                    <strong id="meta-duration">Dec 25 - Dec 26 (2 days)</strong>
+                                </div>
+                            </div>
+
+                            <!-- Reason segment -->
+                            <div class="sim-reason-box">
+                                <span>Leave Purpose / Remarks</span>
+                                <p id="meta-reason">"Personal travel out of state to visit family for holidays."</p>
+                                <div style="margin-top: 8px; font-size:10px; color:#555;" id="meta-doc">
+                                    📄 Attachment: <em>None</em>
+                                </div>
+                            </div>
+
+                            <!-- Decision Comments box -->
+                            <div class="comment-field-wrapper">
+                                <label class="sim-label" for="sim-comment">Reviewer remarks / Decision context:</label>
+                                <textarea id="sim-comment" class="sim-textarea" placeholder="Type decision notes here... (Mandatory if rejecting request)"></textarea>
+                                <div class="comment-err" id="comment-error">⚠ Comments are required to reject (minimum 5 characters).</div>
+                            </div>
+
+                            <!-- Action Row -->
+                            <div class="sim-action-row">
+                                <button class="btn-sim-action btn-sim-approve" onclick="commitAction('approve')">Approve Request</button>
+                                <button class="btn-sim-action btn-sim-reject" onclick="commitAction('reject')">Reject Request</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1. Apply Leave Form Drawer Overlay -->
+                    <div class="sim-drawer-overlay" id="modal-apply-leave">
+                        <div class="sim-drawer" style="max-width: 480px;">
+                            <span class="sim-drawer-close" onclick="closeApplyForm()">&times;</span>
+                            <h3 style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom:15px; font-family:'Ramaraja',serif; font-size:26px;">Apply for Leave</h3>
+                            
+                            <form id="leave-form" onsubmit="submitApplyForm(event)">
+                                <!-- Leave Type -->
+                                <div class="comment-field-wrapper" style="margin-bottom: 15px;">
+                                    <label class="sim-label" for="form-leave-type">Leave Type</label>
+                                    <select id="form-leave-type" class="sim-select-filter" style="width:100%;" onchange="updateFormBalance()">
+                                        <option value="annual">Annual Leave</option>
+                                        <option value="medical">Medical Leave</option>
+                                        <option value="casual">Casual Leave</option>
+                                    </select>
+                                    <div style="font-size: 11px; margin-top: 4px; color: var(--text-muted);" id="form-balance-label">Remaining Balance: 14 days</div>
+                                </div>
+
+                                <!-- Date Range -->
+                                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom:15px;">
+                                    <div>
+                                        <label class="sim-label" for="form-start-date">Start Date</label>
+                                        <input type="date" id="form-start-date" class="sim-input-search" style="width:100%;" onchange="calculateFormDays()" required>
+                                    </div>
+                                    <div>
+                                        <label class="sim-label" for="form-end-date">End Date</label>
+                                        <input type="date" id="form-end-date" class="sim-input-search" style="width:100%;" onchange="calculateFormDays()" required>
+                                    </div>
+                                </div>
+                                
+                                <!-- Dynamic Days Counter -->
+                                <div style="font-size:12px; font-weight:700; margin-bottom:15px; display:flex; justify-content:space-between; border-bottom:1px dashed #ccc; padding-bottom:10px;">
+                                    <span>Total Leave Days:</span>
+                                    <span id="form-total-days">0 days</span>
+                                </div>
+
+                                <!-- Reason -->
+                                <div class="comment-field-wrapper" style="margin-bottom: 15px;">
+                                    <label class="sim-label" for="form-reason">Reason for Leave</label>
+                                    <textarea id="form-reason" class="sim-textarea" placeholder="Provide reason context..." required></textarea>
+                                </div>
+
+                                <!-- Attachment -->
+                                <div class="comment-field-wrapper" style="margin-bottom: 20px;">
+                                    <label class="sim-label" for="form-doc">Attachment (Optional)</label>
+                                    <input type="file" id="form-doc" class="sim-input-search" style="width:100%; font-size:11px;">
+                                </div>
+
+                                <!-- Error Area -->
+                                <div id="form-error" style="font-size:11px; color: var(--accent-red); margin-bottom:15px; display:none; font-weight:600;">
+                                    ⚠ Error message
+                                </div>
+
+                                <!-- Actions -->
+                                <div class="sim-action-row">
+                                    <button type="submit" class="btn-sim-action btn-sim-approve" style="width:100%;">Next: Review Details</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- 2. Review Request Drawer Overlay -->
+                    <div class="sim-drawer-overlay" id="modal-review-apply">
+                        <div class="sim-drawer" style="max-width: 480px;">
+                            <span class="sim-drawer-close" onclick="closeReviewApply()">&times;</span>
+                            <h3 style="border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom:15px; font-family:'Ramaraja',serif; font-size:26px;">Verify Leave Details</h3>
+                            
+                            <div class="sim-meta-grid">
+                                <div class="sim-meta-item">
+                                    <span>Leave Type</span>
+                                    <strong id="review-type">Annual Leave</strong>
+                                </div>
+                                <div class="sim-meta-item">
+                                    <span>Total Duration</span>
+                                    <strong id="review-duration">3 days</strong>
+                                </div>
+                                <div class="sim-meta-item" style="grid-column: span 2;">
+                                    <span>Dates Requested</span>
+                                    <strong id="review-dates">Dec 28, 2026 - Dec 30, 2026</strong>
+                                </div>
+                            </div>
+
+                            <div class="sim-reason-box" style="margin-bottom: 20px;">
+                                <span>Reason Provided</span>
+                                <p id="review-reason">"Personal urgent work at hometown."</p>
+                                <div style="margin-top: 8px; font-size:10px; color:#555;" id="review-doc">
+                                    📄 Attachment: <em>None</em>
+                                </div>
+                            </div>
+
+                            <!-- Warning Banner for Balance Overdraft -->
+                            <div id="review-warning-banner" class="sim-banner sim-banner-unpaid" style="display:none; margin-bottom:20px;">
+                                <span>Note: Insufficient balance. Remaining balance is 0. Excess days will be unpaid.</span>
+                            </div>
+
+                            <div class="sim-action-row">
+                                <button class="btn-sim-action btn-sim-reject" onclick="editApplyForm()">Edit Details</button>
+                                <button class="btn-sim-action btn-sim-approve" onclick="confirmAndSubmitLeave()">Confirm & Submit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Submission Success Drawer Overlay -->
+                    <div class="sim-drawer-overlay" id="modal-success-apply">
+                        <div class="sim-drawer" style="max-width: 420px; text-align: center; padding: 35px 25px;">
+                            <div style="font-size: 50px; color: var(--accent-green); margin-bottom: 15px; font-weight:bold;">✓</div>
+                            <h3 style="margin-bottom:10px; font-family:'Ramaraja',serif; font-size:28px;">Request Submitted</h3>
+                            <p style="font-size:12px; color: var(--text-secondary); margin-bottom: 20px;">
+                                Your leave request has been queued successfully and sent to your manager for approval.
+                            </p>
+
+                            <div class="sim-reason-box" style="text-align: left; margin-bottom: 25px; border-style: solid;">
+                                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:11px;">
+                                    <span style="margin:0;">Request ID</span>
+                                    <strong id="success-id" style="font-family:'IBM Plex Mono',monospace; font-weight:700;">REQ-2026-004</strong>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; font-size:11px;">
+                                    <span style="margin:0;">Current Status</span>
+                                    <strong id="success-status" style="color: var(--accent-yellow); font-weight:700;">Pending Manager Approval</strong>
+                                </div>
+                            </div>
+
+                            <button class="btn-sim-action btn-sim-approve" style="width:100%;" onclick="closeSuccessApply()">Return to Dashboard</button>
+                        </div>
+                    </div>
+
+                    <!-- Mini Confirmation panel -->
+                    <div class="sim-confirm-panel" id="sim-confirm-panel">
+                        <h4 id="confirm-title" style="margin-bottom:10px; border-bottom:1px solid #000; padding-bottom:5px;">Confirm Action</h4>
+                        <p id="confirm-desc" style="font-size:11px; margin-bottom:15px;"></p>
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn-sim-action btn-sim-approve" style="padding:6px;" onclick="executeCommit()">Confirm</button>
+                            <button class="btn-sim-action btn-sim-reject" style="padding:6px;" onclick="cancelCommit()">Cancel</button>
+                        </div>
+                    </div>
+            </section>
+
+        <!-- Section 5: Employee Flow Case Study -->
+        <section class="case-section section-grid">
+            <div class="section-left">
+                <h2>Employee Journey</h2>
+            </div>
+            <div class="section-right">
+                <p>
+                    The employee experience is designed as a focused self-service flow. It prioritizes clarity of information, ease of submission, and real-time reassurance.
+                </p>
+
+                <!-- Step 1 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-green); font-size: 18px; margin-bottom: 0.5rem;">1. Dashboard Overview</h3>
+                        <p>
+                            The dashboard gives employees an immediate, high-level summary of their current standing. Placing the Annual, Medical, and Casual Leave balances as prominent tiles at the top eliminates the need to consult HR databases or dig through previous paystubs. A secondary list logs approved history and recent requests with real-time status badges, giving employees complete visibility into the progress of their applications.
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Dashboard View</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="10" y="10" width="80" height="40" stroke="#000" stroke-width="1"/>
+                            <text font-family="monospace" font-size="6" x="20" y="22" fill="#000">Annual L.</text>
+                            <text font-family="monospace" font-size="12" font-weight="bold" x="20" y="38" fill="#000">14</text>
+                            <rect x="100" y="10" width="80" height="40" stroke="#000" stroke-width="1"/>
+                            <text font-family="monospace" font-size="6" x="110" y="22" fill="#000">Medical L.</text>
+                            <text font-family="monospace" font-size="12" font-weight="bold" x="110" y="38" fill="#000">7</text>
+                            <rect x="190" y="10" width="80" height="40" stroke="#000" stroke-width="1"/>
+                            <text font-family="monospace" font-size="6" x="200" y="22" fill="#000">Casual L.</text>
+                            <text font-family="monospace" font-size="12" font-weight="bold" x="200" y="38" fill="#000">5</text>
+                            <rect x="10" y="65" width="260" height="95" stroke="#000" stroke-width="1"/>
+                            <text font-family="monospace" font-size="7" font-weight="bold" x="20" y="78" fill="#000">Recent Request Log</text>
+                            <line x1="10" y1="85" x2="270" y2="85" stroke="#000" stroke-width="0.8"/>
+                            <text font-family="monospace" font-size="6" x="20" y="98" fill="#000">Annual Leave</text>
+                            <text font-family="monospace" font-size="6" x="120" y="98" fill="#000">Dec 28 - Dec 30</text>
+                            <rect x="220" y="92" width="40" height="8" stroke="#000" fill="none"/>
+                            <text font-family="monospace" font-size="5" x="225" y="98" fill="#000">PENDING</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-green); font-size: 18px; margin-bottom: 0.5rem;">2. Apply Leave Drawer Form</h3>
+                        <p>
+                            The application drawer form is designed to capture all necessary variables in a single popup view. The interface automatically calculates total leave duration based on selected start and end dates. As soon as the type is chosen, it displays the employee's current remaining balance inline, serving as a helpful guide before submission.
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Quick Apply Form</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="20" y="10" width="260" height="150" stroke="#000" stroke-width="1"/>
+                            <text font-family="monospace" font-size="8" font-weight="bold" x="30" y="25" fill="#000">Apply for Leave</text>
+                            <line x1="20" y1="32" x2="280" y2="32" stroke="#000" stroke-width="0.8"/>
+                            <text font-family="monospace" font-size="6" x="30" y="48" fill="#666">Leave Type</text>
+                            <rect x="30" y="52" width="240" height="12" stroke="#ccc" fill="none"/>
+                            <text font-family="monospace" font-size="6" x="35" y="60" fill="#000">Annual Leave</text>
+                            <text font-family="monospace" font-size="6" x="30" y="78" fill="#666">Start Date: 2026-12-28</text>
+                            <text font-family="monospace" font-size="6" x="150" y="78" fill="#666">End Date: 2026-12-30</text>
+                            <line x1="30" y1="92" x2="270" y2="92" stroke="#eee" stroke-width="0.8"/>
+                            <text font-family="monospace" font-size="7" font-weight="bold" x="30" y="105" fill="#000">Total Duration: 3 Days</text>
+                            <rect x="30" y="125" width="240" height="18" stroke="#000" fill="#000"/>
+                            <text font-family="monospace" font-size="7" font-weight="bold" fill="#fff" text-anchor="middle" x="150" y="137">Next: Review Details</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-green); font-size: 18px; margin-bottom: 0.5rem;">3. Review Verification popup</h3>
+                        <p>
+                            Before final submission, the employee is presented with a validation overlay. This acts as a double-check mechanism, confirming details like date ranges and requested duration. Crucially, if the duration exceeds their available balance, a warning banner alerts them that the excess days will convert to unpaid leave. This prevents unintentional overdrafts and future payroll disputes.
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Verify Leave Details</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="20" y="10" width="260" height="150" stroke="#000" stroke-width="1"/>
+                            <text font-family="monospace" font-size="8" font-weight="bold" x="30" y="25" fill="#000">Verify Details</text>
+                            <rect x="30" y="35" width="240" height="25" fill="#fafafa" stroke="#666" stroke-dasharray="2,2"/>
+                            <text font-family="monospace" font-size="5" font-weight="bold" fill="#666" x="35" y="46">⚠ OVERDRAFT WARNING: Insufficient balance.</text>
+                            <text font-family="monospace" font-size="5" fill="#666" x="35" y="54">Excess 2 days will convert to unpaid leave.</text>
+                            <text font-family="monospace" font-size="6" x="30" y="80" fill="#666">Leave Type: Annual Leave</text>
+                            <text font-family="monospace" font-size="6" x="30" y="95" fill="#666">Dates: Dec 28 - Dec 30 (3 days)</text>
+                            <text font-family="monospace" font-size="6" x="30" y="110" fill="#666">Reason: "Personal urgent work at hometown."</text>
+                            <rect x="30" y="130" width="115" height="18" stroke="#000" fill="none"/>
+                            <text font-family="monospace" font-size="6" font-weight="bold" fill="#000" text-anchor="middle" x="87.5" y="141">Edit Details</text>
+                            <rect x="155" y="130" width="115" height="18" stroke="#000" fill="#000"/>
+                            <text font-family="monospace" font-size="6" font-weight="bold" fill="#fff" text-anchor="middle" x="212.5" y="141">Confirm & Submit</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-green); font-size: 18px; margin-bottom: 0.5rem;">4. Success State popup</h3>
+                        <p>
+                            Upon confirmation, a clear success modal closes the loop. It displays a unique Request ID (e.g., REQ-2026-004) and highlights the current status (e.g., "Pending Manager Approval"). Providing this clear endpoint builds trust, reassuring the employee that their request has successfully entered the manager's queue.
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Submission Success</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="30" y="15" width="240" height="140" stroke="#000" stroke-width="1"/>
+                            <circle cx="150" cy="45" r="14" stroke="#0D5C34" stroke-width="1.5" fill="#EBF5EE"/>
+                            <text font-family="monospace" font-size="10" font-weight="bold" fill="#0D5C34" text-anchor="middle" x="150" y="49">✓</text>
+                            <text font-family="monospace" font-size="8" font-weight="bold" fill="#000" text-anchor="middle" x="150" y="75">Request Submitted</text>
+                            <text font-family="monospace" font-size="5" fill="#666" text-anchor="middle" x="150" y="88">Sent to manager for approval.</text>
+                            <rect x="50" y="100" width="200" height="24" fill="#fafafa" stroke="#000"/>
+                            <text font-family="monospace" font-size="5" x="60" y="112">Request ID</text>
+                            <text font-family="monospace" font-size="5" font-weight="bold" x="190" y="112">REQ-2026-004</text>
+                            <text font-family="monospace" font-size="5" x="60" y="120">Status</text>
+                            <text font-family="monospace" font-size="5" font-weight="bold" fill="#df9a00" x="190" y="120">Pending Approval</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5.5: Manager Flow Case Study -->
+        <section class="case-section section-grid">
+            <div class="section-left">
+                <h2>Manager Journey</h2>
+            </div>
+            <div class="section-right">
+                <p>
+                    The manager experience focuses on rapid review, conflict resolution, and compliance. Below is the detailed breakdown of the manager portal steps:
+                </p>
+
+                <!-- Step 1 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-red); font-size: 18px; margin-bottom: 0.5rem;">1. Dashboard Overview</h3>
+                        <p>
+                            The manager dashboard surfaces high-priority metrics instantly. A series of cards displays the count of pending requests requiring review, the number of employees away today, and overdue alerts for requests that have exceeded the 48-hour response limit.
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Manager Dashboard</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="10" y="20" width="80" height="50" stroke="#000"/>
+                            <text font-family="monospace" font-size="5" x="15" y="32">Pending Requests</text>
+                            <text font-family="monospace" font-size="14" font-weight="bold" x="15" y="55">3</text>
+                            <text font-family="monospace" font-size="5" fill="#666" x="15" y="65">require review</text>
+                            <rect x="110" y="20" width="80" height="50" stroke="#000"/>
+                            <text font-family="monospace" font-size="5" x="115" y="32">On Leave Today</text>
+                            <text font-family="monospace" font-size="14" font-weight="bold" x="115" y="55">1</text>
+                            <text font-family="monospace" font-size="5" fill="#666" x="115" y="65">of 8 members away</text>
+                            <rect x="210" y="20" width="80" height="50" stroke="#000"/>
+                            <text font-family="monospace" font-size="5" x="215" y="32">Overdue Alerts</text>
+                            <text font-family="monospace" font-size="14" font-weight="bold" fill="#D95D39" x="215" y="55">1</text>
+                            <text font-family="monospace" font-size="5" fill="#666" x="215" y="65">exceeded 48h limit</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-red); font-size: 18px; margin-bottom: 0.5rem;">2. Pending Queue</h3>
+                        <p>
+                            All incoming requests compile in a unified table queue. Managers can filter by leave type, search by employee name or role, and sort by duration or name. Overlapping schedule warnings and overdue flags are displayed directly on the table rows, guiding priority.
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Request Queue</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="10" y="10" width="280" height="150" stroke="#000"/>
+                            <text font-family="monospace" font-size="7" font-weight="bold" x="20" y="25">Pending Request Queue</text>
+                            <line x1="10" y1="35" x2="290" y2="35" stroke="#000"/>
+                            <text font-family="monospace" font-size="6" x="20" y="52">Priya R. (Frontend Eng.)</text>
+                            <text font-family="monospace" font-size="6" x="140" y="52">Sick Leave</text>
+                            <rect x="200" y="47" width="28" height="7" stroke="#D95D39" fill="#FDF2F0"/>
+                            <text font-family="monospace" font-size="4" fill="#D95D39" x="202" y="52">CONFLICT</text>
+                            <rect x="232" y="47" width="28" height="7" stroke="#df9a00" fill="#FFF9E6"/>
+                            <text font-family="monospace" font-size="4" fill="#df9a00" x="234" y="52">OVERDUE</text>
+                            <rect x="265" y="46" width="20" height="9" stroke="#000" fill="#000"/>
+                            <text font-family="monospace" font-size="5" fill="#fff" x="267" y="52">Review</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-red); font-size: 18px; margin-bottom: 0.5rem;">3. Review Request Drawer</h3>
+                        <p>
+                            Clicking "Review" opens a focused contextual drawer overlay. It pulls together the employee's metadata, Department details, requested leave duration, reason, attachments, and remaining balances without requiring a page redirect or navigation away from the queue.
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Review Drawer</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="50" y="10" width="240" height="160" stroke="#000"/>
+                            <text font-family="monospace" font-size="8" font-weight="bold" x="60" y="25">Review Leave Request</text>
+                            <line x1="50" y1="32" x2="290" y2="32" stroke="#000"/>
+                            <text font-family="monospace" font-size="6" x="60" y="48">Employee: Amit K. (Backend Eng)</text>
+                            <text font-family="monospace" font-size="6" x="60" y="62">Leave details: Earned Leave (4 days)</text>
+                            <rect x="60" y="75" width="220" height="35" fill="#f8f8f6" stroke="#ccc"/>
+                            <text font-family="monospace" font-size="5" x="65" y="87">"Attending elder sister's wedding ceremony."</text>
+                            <text font-family="monospace" font-size="5" fill="#666" x="65" y="98">📄 Attachment: Wedding_Invite.png</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-red); font-size: 18px; margin-bottom: 0.5rem;">4. Warning States</h3>
+                        <p>
+                            The review drawer dynamically renders warning banners: schedule conflicts (concurrent absences within the same department), overdue markers (waiting over 48 hours), or unpaid overdrafts (insufficient balances converted to unpaid leave).
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Dynamic Warnings</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="20" y="20" width="260" height="35" fill="#FDF2F0" stroke="#D95D39"/>
+                            <text font-family="monospace" font-size="6" font-weight="bold" fill="#D95D39" x="30" y="35">⚠ OVERLAP ALERT: Sneha J. is also away on these dates.</text>
+                            <text font-family="monospace" font-size="5.5" fill="#D95D39" x="30" y="46">Team coverage will drop below threshold (50%).</text>
+                            <rect x="20" y="70" width="260" height="35" fill="#FFF9E6" stroke="#df9a00"/>
+                            <text font-family="monospace" font-size="6" font-weight="bold" fill="#df9a00" x="30" y="85">⚠ OVERDUE ALERT: Action required.</text>
+                            <text font-family="monospace" font-size="5.5" fill="#df9a00" x="30" y="96">Request has been waiting for review for > 48 hours.</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-red); font-size: 18px; margin-bottom: 0.5rem;">5. Approval Decision</h3>
+                        <p>
+                            Managers can approve or reject requests with one click. To enforce accountability and audit logs, rejections require a mandatory review remark explaining the decision, which is synchronized back to the employee's portal.
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Decision Overlay</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="40" y="25" width="220" height="120" stroke="#000" fill="#fff"/>
+                            <text font-family="monospace" font-size="7" font-weight="bold" x="50" y="42">Confirm Action</text>
+                            <line x1="40" y1="50" x2="260" y2="50" stroke="#000"/>
+                            <text font-family="monospace" font-size="6" x="50" y="70">Are you sure you want to REJECT request?</text>
+                            <text font-family="monospace" font-size="6" x="50" y="82">Remarks: "Team coverage overlap on Dec 26."</text>
+                            <rect x="50" y="110" width="90" height="20" stroke="#000" fill="#000"/>
+                            <text font-family="monospace" font-size="6" fill="#fff" text-anchor="middle" x="95" y="122">Confirm</text>
+                            <rect x="160" y="110" width="90" height="20" stroke="#000" fill="#none"/>
+                            <text font-family="monospace" font-size="6" fill="#000" text-anchor="middle" x="205" y="122">Cancel</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="flow-step">
+                    <div class="flow-step-text">
+                        <h3 style="color: var(--accent-red); font-size: 18px; margin-bottom: 0.5rem;">6. Dashboard Refresh</h3>
+                        <p>
+                            Upon completing an action, the queue and metrics refresh immediately. The approved request is archived, pending counts decrement, and a validation toast notifies the manager of successful synchronization, returning them back to the active queue.
+                        </p>
+                    </div>
+                    <div class="flow-step-visual">
+                        <h4>Queue Refresh</h4>
+                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                            <rect x="10" y="10" width="280" height="150" stroke="#000"/>
+                            <rect x="50" y="25" width="200" height="25" fill="#000" stroke="#fff"/>
+                            <text font-family="monospace" font-size="6.5" font-weight="bold" fill="#fff" text-anchor="middle" x="150" y="40">✗ Rejected - Priya R. notified successfully</text>
+                            <text font-family="monospace" font-size="6.5" font-weight="bold" x="20" y="80">Pending Request Queue</text>
+                            <line x1="10" y1="90" x2="290" y2="90" stroke="#000"/>
+                            <text font-family="monospace" font-size="6" x="20" y="110">Rima Deb (QA Analyst)</text>
+                            <text font-family="monospace" font-size="6" x="140" y="110">Casual Leave</text>
+                            <text font-family="monospace" font-size="6" x="220" y="110">2 Days</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Figma Wireframes & Workspace Canvas -->
+        <section class="case-section" style="width: 100%; border-top: var(--border-primary); padding-top: 3.5rem;">
+            <div style="margin-bottom: 2rem;">
+                <h2 class="underline green-underline" style="display:inline-block;">Figma Wireframes & Workspace Canvas</h2>
+                <p style="font-size: 16px; color: var(--text-secondary); margin-top: 1rem; max-width: 800px;">
+                    Explore Rima's live interactive design workspace. You can pan, zoom, and navigate the frames directly from this embedded workspace.
+                </p>
+            </div>
+
+            <!-- Workspace Directory Categories -->
+            <div class="workspace-categories" style="display: flex; gap: 2rem; border-bottom: var(--border-primary); padding-bottom: 12px; margin-bottom: 1.5rem; font-size: 11px; font-weight: 700; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">
+                <span style="color: var(--accent-green);">Workspace Directories:</span>
+                <a href="#figma-frame-employee" class="underline green-underline">Employee Flow</a>
+                <span>·</span>
+                <a href="#figma-frame-manager" class="underline green-underline">Manager Flow</a>
+                <span>·</span>
+                <a href="https://www.figma.com/design/TpYq8ZVAc82YB3CkuSoJNi/assignments?node-id=634-421" target="_blank" class="underline green-underline">Components</a>
+                <span>·</span>
+                <a href="https://www.figma.com/design/TpYq8ZVAc82YB3CkuSoJNi/assignments?node-id=496-180" target="_blank" class="underline green-underline">Design System</a>
+                <span>·</span>
+                <a href="https://www.figma.com/design/TpYq8ZVAc82YB3CkuSoJNi/assignments?node-id=536-471" target="_blank" class="underline green-underline">Interaction States</a>
+            </div>
+
+            <!-- Staggered gallery layout of flows -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div id="figma-frame-employee">
+                    <h3 style="margin-bottom: 0.5rem; font-size: 15px; font-weight: 700;">Employee Portal Flow</h3>
+                    <iframe style="border: var(--border-primary); background: #f9f9f9; width: 100%; height: 500px;" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FTpYq8ZVAc82YB3CkuSoJNi%2Fassignments%3Fnode-id%3D634-421%26t%3DXyY8f7BLD4TxJlI8-1" allowfullscreen></iframe>
+                    <div class="figma-embed-meta" style="margin-top: 10px; font-size: 12px; color: var(--text-secondary);">
+                        🔗 Refer to original Figma sheet: <a href="https://www.figma.com/design/TpYq8ZVAc82YB3CkuSoJNi/assignments?node-id=634-421" target="_blank" class="underline green-underline">assignments – Employee Portal Canvas</a>
+                    </div>
+                </div>
+                <div id="figma-frame-manager">
+                    <h3 style="margin-bottom: 0.5rem; font-size: 15px; font-weight: 700;">Manager Portal Flow</h3>
+                    <iframe style="border: var(--border-primary); background: #f9f9f9; width: 100%; height: 500px;" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FTpYq8ZVAc82YB3CkuSoJNi%2Fassignments%3Fnode-id%3D634-422%26t%3DXyY8f7BLD4TxJlI8-1" allowfullscreen></iframe>
+                    <div class="figma-embed-meta" style="margin-top: 10px; font-size: 12px; color: var(--text-secondary);">
+                        🔗 Refer to original Figma sheet: <a href="https://www.figma.com/design/TpYq8ZVAc82YB3CkuSoJNi/assignments?node-id=634-422" target="_blank" class="underline green-underline">assignments – Manager Portal Canvas</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Key UX Decisions -->
+        <section class="case-section section-grid">
+            <div class="section-left">
+                <h2>Key UX Decisions</h2>
+            </div>
+            <div class="section-right">
+                <p>
+                    Every interaction inside the system is calibrated to minimize cognitive load and eliminate administrative blind spots.
+                </p>
+                
+                <div class="editorial-grid-3">
+                    <div class="editorial-card">
+                        <svg class="editorial-card-icon" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                        <h3>Dashboard Summary</h3>
+                        <p>Glanceable statistics for remaining balances (employee) and pending/overdue counts (manager) bypass unnecessary database navigation.</p>
+                    </div>
+                    <div class="editorial-card">
+                        <svg class="editorial-card-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <h3>Conflict Detection</h3>
+                        <p>Automatic background schedule cross-checking tags overlaps directly within review states, preserving coverage parameters.</p>
+                    </div>
+                    <div class="editorial-card">
+                        <svg class="editorial-card-icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+                        <h3>Review Verification</h3>
+                        <p>Pre-submission details confirmation popups prevent calendar date errors and warn employees of balance overdrafts.</p>
+                    </div>
+                    <div class="editorial-card">
+                        <svg class="editorial-card-icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="M8 8h8"/><path d="M8 16h8"/></svg>
+                        <h3>Approval Queue</h3>
+                        <p>A single, unified feed featuring advanced search, type filtering, and duration sorting streamlines manager approvals.</p>
+                    </div>
+                    <div class="editorial-card">
+                        <svg class="editorial-card-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <h3>Real-Time Status</h3>
+                        <p>Symmetric tracking loops update histories instantly when manager decisions occur, removing manual email delays.</p>
+                    </div>
+                    <div class="editorial-card">
+                        <svg class="editorial-card-icon" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <h3>Context Warnings</h3>
+                        <p>Visible alerts (overdue requests, negative balance convert to unpaid) contextually inform users at critical decision gates.</p>
+                    </div>
+                    <div class="editorial-card">
+                        <svg class="editorial-card-icon" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <h3>Progressive Disclosure</h3>
+                        <p>Detailed metadata elements, attachment previews, and warning banners stay hidden in drawers until active review is requested.</p>
+                    </div>
+                    <div class="editorial-card">
+                        <svg class="editorial-card-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        <h3>Error Prevention</h3>
+                        <p>Mandatory justification remarks for rejected requests protect system logic and maintain record accountability.</p>
+                    </div>
+                    <div class="editorial-card">
+                        <svg class="editorial-card-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+                        <h3>Role-Based Design</h3>
+                        <p>Segregated dashboard architectures optimize specific employee application tasks and manager review queues.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Reflection & Next Steps -->
+        <section class="case-section section-grid">
+            <div class="section-left">
+                <h2>Reflection & Next Steps</h2>
+            </div>
+            <div class="section-right">
+                <p style="font-size: 16px; line-height: 1.6; margin-bottom: 2rem;">
+                    Building a unified Leave Management System highlighted the necessity of designing for multi-sided platforms. A decision made in one portal immediately impacts the state and balance of the other workspace, demonstrating how deeply interconnected these workflows are.
+                </p>
+                
+                <div class="editorial-grid-2" style="grid-template-columns: 1fr; gap: 2rem;">
+                    <!-- Lessons Learned Card -->
+                    <div class="editorial-card" style="padding: 2.5rem; gap: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                            <!-- Lucide Icon: book-open -->
+                            <svg class="editorial-card-icon" viewBox="0 0 24 24" style="color: var(--accent-green);"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            <h3 style="font-size: 16px; font-weight: 700; text-transform: uppercase;">Lessons Learned</h3>
+                        </div>
+                        <p style="font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
+                            UX is not just about designing isolated screens—it is about creating real-time feedback loops. Designing warning indicators, such as unpaid leave warning banners for employees and team availability tooltips for managers, helps set clear user expectations and reduces organization-wide friction before errors occur.
+                        </p>
+                    </div>
+
+                    <!-- Future Improvements Card -->
+                    <div class="editorial-card" style="padding: 2.5rem; gap: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+                            <!-- Lucide Icon: trending-up -->
+                            <svg class="editorial-card-icon" viewBox="0 0 24 24" style="color: var(--accent-green);"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                            <h3 style="font-size: 16px; font-weight: 700; text-transform: uppercase;">Future Improvements & Next Features</h3>
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 20px;">
+                            <!-- Feature 1 -->
+                            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                                <div>
+                                    <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">Push Notifications:</strong>
+                                    <span style="font-size: 13px; color: var(--text-secondary);">Real-time Slack, email, or browser notifications for immediate status updates.</span>
+                                </div>
+                            </div>
+                            <!-- Feature 2 -->
+                            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                <div>
+                                    <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">Calendar Integration:</strong>
+                                    <span style="font-size: 13px; color: var(--text-secondary);">Synchronize approved leaves directly with Outlook, Google Calendar, or Apple Calendar.</span>
+                                </div>
+                            </div>
+                            <!-- Feature 3 -->
+                            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                                <div>
+                                    <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">Mobile Responsiveness:</strong>
+                                    <span style="font-size: 13px; color: var(--text-secondary);">Optimize dashboards for mobile devices so employees can easily submit leave requests on the go.</span>
+                                </div>
+                            </div>
+                            <!-- Feature 4 -->
+                            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                <div>
+                                    <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">HR Analytics Dashboard:</strong>
+                                    <span style="font-size: 13px; color: var(--text-secondary);">Provide aggregated charts and insights for HR teams to analyze absenteeism trends and leave patterns.</span>
+                                </div>
+                            </div>
+                            <!-- Feature 5 -->
+                            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                <div>
+                                    <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">Delegated Approvals:</strong>
+                                    <span style="font-size: 13px; color: var(--text-secondary);">Allow managers to temporarily delegate approval authority to team leads during vacations or extended absences.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Roomy Footer Section -->
+    <footer style="margin-top: 8rem; padding: 5rem 2rem; border-top: var(--border-primary); text-align: center; font-size: 13px; color: var(--text-secondary); background-color: var(--bg-panel);">
+        <p style="font-weight:700; font-family:'Ramaraja',serif; font-size: 24px; margin-bottom: 8px; text-transform: capitalize;">rima debnath</p>
+        <p>Product Design Portfolio Case Study • Leave Management System (LMS)</p>
+        <p style="margin-top: 15px; font-size:11px; color: var(--text-muted);">© 2026 Rima Debnath. Designed in Ramaraja & IBM Plex Mono.</p>
+    </footer>
+
+    <!-- SIMULATOR INTERACTIVE BEHAVIOR SCRIPT -->
+    <script>
+        // State model of the leave management dashboard
+        const simState = {
+            activeRequests: [
+                {
+                    id: 'rima',
+                    name: 'Rima Deb',
+                    role: 'QA Analyst',
+                    dept: 'QA Dept',
+                    type: 'Casual Leave',
+                    dates: 'Dec 25 - Dec 26',
+                    duration: '2 days',
+                    reason: 'Family holiday travel out of state.',
+                    document: 'None',
+                    isConflict: false,
+                    isOverdue: false,
+                    isUnpaid: false,
+                    startDay: 25,
+                    endDay: 26
+                },
+                {
+                    id: 'priya',
+                    name: 'Priya R.',
+                    role: 'Frontend Eng.',
+                    dept: 'Engineering',
+                    type: 'Sick Leave',
+                    dates: 'Nov 10 - Nov 11',
+                    duration: '2 days',
+                    reason: 'Scheduled wisdom teeth extraction.',
+                    document: 'Medical_Report.pdf',
+                    isConflict: true,
+                    isOverdue: true,
+                    isUnpaid: false,
+                    startDay: 25,
+                    endDay: 26
+                },
+                {
+                    id: 'amit',
+                    name: 'Amit K.',
+                    role: 'Backend Eng.',
+                    dept: 'Engineering',
+                    type: 'Earned Leave',
+                    dates: 'Dec 24 - Dec 27',
+                    duration: '4 days',
+                    reason: 'Attending elder sister\'s wedding ceremony.',
+                    document: 'Wedding_Invite.png',
+                    isConflict: true,
+                    isOverdue: false,
+                    isUnpaid: true, // Zero balance
+                    startDay: 24,
+                    endDay: 27
+                },
+                {
+                    id: 'kunal',
+                    name: 'Kunal M.',
+                    role: 'Mobile Dev.',
+                    dept: 'Engineering',
+                    type: 'Sick Leave',
+                    dates: 'Dec 26 - Dec 27',
+                    duration: '2 days',
+                    reason: 'Severe fever and body pain.',
+                    document: 'Prescription.pdf',
+                    isConflict: true,
+                    isOverdue: false,
+                    isUnpaid: false,
+                    startDay: 26,
+                    endDay: 27
+                },
+                {
+                    id: 'elena',
+                    name: 'Elena R.',
+                    role: 'UX Designer',
+                    dept: 'Product Design',
+                    type: 'Casual Leave',
+                    dates: 'Dec 28 - Dec 29',
+                    duration: '2 days',
+                    reason: 'Personal travel plans.',
+                    document: 'None',
+                    isConflict: false,
+                    isOverdue: false,
+                    isUnpaid: false,
+                    startDay: 28,
+                    endDay: 29
+                },
+                {
+                    id: 'vikram',
+                    name: 'Vikram S.',
+                    role: 'Product PM',
+                    dept: 'Management',
+                    type: 'Earned Leave',
+                    dates: 'Dec 15 - Dec 20',
+                    duration: '6 days',
+                    reason: 'Winter family vacation.',
+                    document: 'None',
+                    isConflict: false,
+                    isOverdue: false,
+                    isUnpaid: false,
+                    startDay: 15,
+                    endDay: 20
+                },
+                {
+                    id: 'sophia',
+                    name: 'Sophia L.',
+                    role: 'DevOps Spec.',
+                    dept: 'Infrastructure',
+                    type: 'Sick Leave',
+                    dates: 'Dec 12 - Dec 13',
+                    duration: '2 days',
+                    reason: 'Medical checkup.',
+                    document: 'Appointment_Slip.pdf',
+                    isConflict: false,
+                    isOverdue: false,
+                    isUnpaid: false,
+                    startDay: 12,
+                    endDay: 13
+                },
+                {
+                    id: 'rajan',
+                    name: 'Rajan P.',
+                    role: 'HR Admin',
+                    dept: 'HR Dept',
+                    type: 'Casual Leave',
+                    dates: 'Dec 30 - Dec 31',
+                    duration: '2 days',
+                    reason: 'Year end celebration travel.',
+                    document: 'None',
+                    isConflict: false,
+                    isOverdue: true,
+                    isUnpaid: false,
+                    startDay: 30,
+                    endDay: 31
+                }
+            ],
+            currentRole: 'manager',
+            employeeBalances: {
+                annual: 14,
+                medical: 7,
+                casual: 5
+            },
+            approvedLeaves: [
+                { id: 'REQ-2026-001', type: 'Annual Leave', dates: 'Aug 10 - Aug 15', duration: '5 days', status: 'Approved', year: 2026, month: 'Aug' },
+                { id: 'REQ-2026-002', type: 'Medical Leave', dates: 'Oct 02 - Oct 03', duration: '2 days', status: 'Approved', year: 2026, month: 'Oct' },
+                { id: 'REQ-2026-003', type: 'Casual Leave', dates: 'Nov 12 - Nov 13', duration: '2 days', status: 'Approved', year: 2026, month: 'Nov' },
+                { id: 'REQ-2025-001', type: 'Annual Leave', dates: 'Dec 20 - Dec 24', duration: '5 days', status: 'Approved', year: 2025, month: 'Dec' }
+            ],
+            currentSelection: null,
+            decisionType: null,
+            searchQuery: '',
+            filterType: 'all',
+            processedIds: new Set(),
+            approvedIds: new Set(),
+            pageIndex: 0,
+            pageSize: 3,
+            historyPageIndex: 0,
+            historyPageSize: 2,
+            recentPageIndex: 0,
+            recentPageSize: 2
+        };
+
+        // Render functions
+        function renderQueue() {
+            const tbody = document.getElementById("sim-queue-body");
+            const emptyState = document.getElementById("sim-empty-state");
+            const showingLabel = document.getElementById("table-showing-label");
+            const paginationBar = document.getElementById("sim-pagination-bar");
+            
+            // Filter list
+            let filtered = simState.activeRequests.filter(req => {
+                if (simState.processedIds.has(req.id)) return false;
+                
+                // search match
+                const matchSearch = req.name.toLowerCase().includes(simState.searchQuery.toLowerCase()) || 
+                                    req.role.toLowerCase().includes(simState.searchQuery.toLowerCase());
+                
+                // filter match
+                const matchFilter = simState.filterType === 'all' || req.type.includes(simState.filterType);
+                
+                return matchSearch && matchFilter;
+            });
+
+            // Sort list
+            const sortVal = document.getElementById("sim-sort") ? document.getElementById("sim-sort").value : 'default';
+            if (sortVal === 'duration-asc') {
+                filtered.sort((a, b) => {
+                    const daysA = parseInt(a.duration) || 0;
+                    const daysB = parseInt(b.duration) || 0;
+                    return daysA - daysB;
+                });
+            } else if (sortVal === 'duration-desc') {
+                filtered.sort((a, b) => {
+                    const daysA = parseInt(a.duration) || 0;
+                    const daysB = parseInt(b.duration) || 0;
+                    return daysB - daysA;
+                });
+            } else if (sortVal === 'name-asc') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            // Sync statistic counts
+            const activePendingCount = simState.activeRequests.filter(r => !simState.processedIds.has(r.id)).length;
+            document.getElementById("count-pending").textContent = activePendingCount;
+            
+            // Sync overdue count
+            let overdueCount = 0;
+            simState.activeRequests.forEach(r => {
+                if (!simState.processedIds.has(r.id) && r.isOverdue) overdueCount++;
+            });
+            document.getElementById("count-overdue").textContent = overdueCount;
+            if (overdueCount === 0) {
+                document.getElementById("count-overdue").style.color = 'inherit';
+            }
+
+            // clear tbody
+            tbody.innerHTML = '';
+            
+            if (filtered.length === 0) {
+                emptyState.style.display = 'block';
+                showingLabel.textContent = `Showing 0 of 0`;
+                if (paginationBar) paginationBar.style.display = 'none';
+            } else {
+                emptyState.style.display = 'none';
+                if (paginationBar) paginationBar.style.display = 'flex';
+                
+                // Pagination slice calculations
+                const totalMatching = filtered.length;
+                const maxPageIndex = Math.max(0, Math.ceil(totalMatching / simState.pageSize) - 1);
+                if (simState.pageIndex > maxPageIndex) {
+                    simState.pageIndex = maxPageIndex;
+                }
+                
+                const startIdx = simState.pageIndex * simState.pageSize;
+                const endIdx = startIdx + simState.pageSize;
+                const paginatedItems = filtered.slice(startIdx, endIdx);
+                
+                showingLabel.textContent = `Showing ${startIdx + 1}–${Math.min(endIdx, totalMatching)} of ${totalMatching}`;
+                document.getElementById("pagination-info").textContent = `Showing ${startIdx + 1}–${Math.min(endIdx, totalMatching)} of ${totalMatching}`;
+                
+                // Disable/Enable buttons
+                document.getElementById("btn-prev-page").disabled = (simState.pageIndex === 0);
+                document.getElementById("btn-next-page").disabled = (simState.pageIndex === maxPageIndex);
+
+                paginatedItems.forEach(req => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'sim-row';
+                    tr.id = `row-${req.id}`;
+                    
+                    let flagHTML = '—';
+                    if (req.isConflict || req.isOverdue || req.isUnpaid) {
+                        flagHTML = '';
+                        if (req.isConflict) flagHTML += `<span class="badge badge-conflict" style="margin-right: 4px;">Conflict</span>`;
+                        if (req.isOverdue) flagHTML += `<span class="badge badge-overdue" style="margin-right: 4px;">Overdue</span>`;
+                        if (req.isUnpaid) flagHTML += `<span class="badge badge-unpaid">0 Bal</span>`;
+                    }
+
+                    tr.innerHTML = `
+                        <td>
+                            <div class="employee-cell">
+                                <span class="emp-name">${req.name}</span>
+                                <span class="emp-role">${req.role}</span>
+                            </div>
+                        </td>
+                        <td>${req.type.split(' ')[0]}</td>
+                        <td>${req.dates}</td>
+                        <td>${req.duration}</td>
+                        <td>${flagHTML}</td>
+                        <td style="text-align: right;">
+                            <button class="btn-review" onclick="openReview('${req.id}')">Review</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        // Search / Filter interaction
+        function searchQueue() {
+            simState.searchQuery = document.getElementById("sim-search").value;
+            simState.filterType = document.getElementById("sim-filter").value;
+            renderQueue();
+        }
+
+        // Open detailed view modal drawer
+        function openReview(id) {
+            const req = simState.activeRequests.find(r => r.id === id);
+            if (!req) return;
+            
+            simState.currentSelection = req;
+            
+            // Populate meta labels
+            document.getElementById("meta-name").textContent = req.name;
+            document.getElementById("meta-role").textContent = `${req.role} (${req.dept})`;
+            document.getElementById("meta-type").textContent = req.type;
+            document.getElementById("meta-duration").textContent = `${req.dates} (${req.duration})`;
+            document.getElementById("meta-reason").textContent = `"${req.reason}"`;
+            document.getElementById("meta-doc").innerHTML = req.document !== 'None' 
+                ? `📄 Attachment: <strong style="text-decoration:underline; cursor:pointer;">${req.document}</strong>`
+                : `📄 Attachment: <em>None</em>`;
+            
+            // Render specific warning alerts inside review panel
+            const warningsDiv = document.getElementById("drawer-warnings");
+            warningsDiv.innerHTML = '';
+
+            if (req.isConflict) {
+                const confBanner = document.createElement('div');
+                confBanner.className = 'sim-banner sim-banner-conflict';
+                confBanner.innerHTML = `<span>⚠ OVERLAP ALERT: Sneha J. is also away on these dates. Team coverage will drop.</span>`;
+                warningsDiv.appendChild(confBanner);
+            }
+            if (req.isOverdue) {
+                const ovrBanner = document.createElement('div');
+                ovrBanner.className = 'sim-banner sim-banner-overdue';
+                ovrBanner.innerHTML = `<span>⚠ OVERDUE ALERT: Action required. Request has been waiting for review for &gt; 48 hours.</span>`;
+                warningsDiv.appendChild(ovrBanner);
+            }
+            if (req.isUnpaid) {
+                const unpBanner = document.createElement('div');
+                unpBanner.className = 'sim-banner sim-banner-unpaid';
+                unpBanner.innerHTML = `<span>Note: 0 Sick/Earned days balance remaining. This will convert to unpaid leave.</span>`;
+                warningsDiv.appendChild(unpBanner);
+            }
+
+            // Reset textarea & error
+            document.getElementById("sim-comment").value = '';
+            document.getElementById("comment-error").style.display = 'none';
+
+            // Show drawer overlay
+            document.getElementById("sim-drawer-overlay").classList.add("active");
+        }
+
+        function closeReview() {
+            document.getElementById("sim-drawer-overlay").classList.remove("active");
+            simState.currentSelection = null;
+        }
+
+        // Commit decision flow triggers confirmation modal
+        function commitAction(type) {
+            const comment = document.getElementById("sim-comment").value.trim();
+            
+            // Rejection requires comment validation
+            if (type === 'reject' && comment.length < 5) {
+                document.getElementById("comment-error").style.display = 'block';
+                document.getElementById("sim-comment").focus();
+                return;
+            }
+
+            document.getElementById("comment-error").style.display = 'none';
+            simState.decisionType = type;
+            
+            // Construct message
+            const actionText = type === 'approve' ? 'APPROVE' : 'REJECT';
+            const empName = simState.currentSelection.name;
+            const desc = `Are you sure you want to <strong>${actionText}</strong> the leave request from <strong>${empName}</strong>?<br><br>Remarks: <em>"${comment || 'None provided.'}"</em>`;
+            
+            document.getElementById("confirm-desc").innerHTML = desc;
+            document.getElementById("sim-confirm-panel").classList.add("active");
+        }
+
+        function cancelCommit() {
+            document.getElementById("sim-confirm-panel").classList.remove("active");
+            simState.decisionType = null;
+        }
+
+        // Finalize transaction
+        function executeCommit() {
+            const req = simState.currentSelection;
+            const dec = simState.decisionType;
+            
+            cancelCommit();
+            closeReview();
+            
+            // Mark as processed
+            simState.processedIds.add(req.id);
+            if (dec === 'approve') {
+                simState.approvedIds.add(req.id);
+                // IF S. Jenkins' request gets approved, deduct balance
+                if (req.createdByEmployee) {
+                    const leaveKey = req.type.toLowerCase().split(' ')[0]; // 'annual', 'medical', 'casual'
+                    if (simState.employeeBalances[leaveKey] !== undefined) {
+                        const days = parseInt(req.duration) || 0;
+                        simState.employeeBalances[leaveKey] = Math.max(0, simState.employeeBalances[leaveKey] - days);
+                    }
+                }
+            }
+            
+            // Update queue
+            renderQueue();
+            updateLeaveTodayTooltip();
+            if (simState.currentRole === 'employee') {
+                renderEmployeeDashboard();
+            }
+
+            // Fire custom notification toast
+            showToast(dec === 'approve' ? `✓ Approved - ${req.name} notified` : `✗ Rejected - ${req.name} notified`);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("sim-toast");
+            toast.textContent = message;
+            toast.classList.add("active");
+            
+            setTimeout(() => {
+                toast.classList.remove("active");
+            }, 3000);
+        }
+
+        function updateLeaveTodayTooltip() {
+            // Base coverage (already away, diversified names)
+            const baseCoverage = [
+                { name: 'Sneha J.', type: 'Casual Leave', dates: 'Dec 25 - Dec 29', duration: 5, startDay: 25, endDay: 29 },
+                { name: 'Kunal M.', type: 'Sick Leave', dates: 'Dec 26 - Dec 27', duration: 2, startDay: 26, endDay: 27 },
+                { name: 'Elena R.', type: 'Casual Leave', dates: 'Dec 28 - Dec 29', duration: 2, startDay: 28, endDay: 29 },
+                { name: 'Vikram S.', type: 'Earned Leave', dates: 'Dec 1 - Dec 5', duration: 5, startDay: 1, endDay: 5 },
+                { name: 'Sophia L.', type: 'Sick Leave', dates: 'Dec 12 - Dec 13', duration: 2, startDay: 12, endDay: 13 }
+            ];
+
+            // Approved dynamic requests
+            const dynamicApproved = [];
+            simState.activeRequests.forEach(req => {
+                if (simState.processedIds.has(req.id) && simState.approvedIds.has(req.id)) {
+                    dynamicApproved.push({
+                        name: req.name,
+                        type: req.type,
+                        dates: req.dates,
+                        duration: parseInt(req.duration) || 2,
+                        startDay: req.startDay,
+                        endDay: req.endDay
+                    });
+                }
+            });
+
+            const allApproved = [...baseCoverage, ...dynamicApproved];
+
+            // Today is Dec 25
+            // 1. On Leave Today: any leave overlapping Dec 25 (i.e. startDay <= 25 <= endDay)
+            const onLeaveToday = allApproved.filter(l => l.startDay <= 25 && 25 <= l.endDay);
+            
+            // 2. On Leave This Week (Dec 25 - Dec 31)
+            const thisWeekLeaves = allApproved.filter(l => !l.dates.includes("Nov"));
+
+            // 3. Approved Leaves for the Month (December)
+            const thisMonthLeaves = allApproved.filter(l => l.dates.includes("Dec"));
+
+            // Update badge counts
+            const countTodayVal = onLeaveToday.length;
+            document.getElementById("count-leave-today").textContent = countTodayVal;
+
+            // Rebuild HTML
+            const tooltip = document.getElementById("tile-leave-tooltip");
+            let html = '';
+
+            // Section 1: Today
+            html += `<h5>On Leave Today (${countTodayVal})</h5>`;
+            if (onLeaveToday.length === 0) {
+                html += `<div style="color:#888; font-size:10px; padding: 4px 0;">No one away today.</div>`;
+            } else {
+                onLeaveToday.forEach(l => {
+                    html += `
+                    <div class="hover-card-item">
+                        <div><strong>${l.name}</strong> (${l.type.split(' ')[0]})</div>
+                        <div style="color:#777">${l.dates}</div>
+                    </div>`;
+                });
+            }
+
+            // Section 2: This Week
+            html += `<h5>On Leave This Week</h5>`;
+            if (thisWeekLeaves.length === 0) {
+                html += `<div style="color:#888; font-size:10px; padding: 4px 0;">No one away this week.</div>`;
+            } else {
+                thisWeekLeaves.forEach(l => {
+                    html += `
+                    <div class="hover-card-item">
+                        <div><strong>${l.name}</strong> (${l.type.split(' ')[0]})</div>
+                        <div style="color:#777">${l.dates}</div>
+                    </div>`;
+                });
+            }
+
+            // Section 3: Approved Leaves (Month)
+            html += `<h5>Approved Leaves (Dec)</h5>`;
+            if (thisMonthLeaves.length === 0) {
+                html += `<div style="color:#888; font-size:10px; padding: 4px 0;">No approved leaves.</div>`;
+            } else {
+                thisMonthLeaves.forEach(l => {
+                    html += `
+                    <div class="hover-card-item">
+                        <div><strong>${l.name}</strong> (${l.type.split(' ')[0]})</div>
+                        <div style="color:#777">${l.dates}</div>
+                    </div>`;
+                });
+            }
+
+            tooltip.innerHTML = html;
+        }
+
+        function switchFigmaTab(tabId) {
+            // Hide all embeds
+            document.querySelectorAll('.figma-embed-container').forEach(el => el.style.display = 'none');
+            // Remove active-tab class from all tabs
+            document.querySelectorAll('.figma-tab-btn').forEach(el => el.classList.remove('active-tab'));
+            
+            // Show target embed
+            document.getElementById(`figma-frame-${tabId}`).style.display = 'block';
+            // Add active-tab class to clicked button
+            document.getElementById(`tab-btn-${tabId}`).classList.add('active-tab');
+        }
+
+        function resetSimulation() {
+            // Restore activeRequests by filtering out employee requests
+            simState.activeRequests = simState.activeRequests.filter(r => !r.createdByEmployee);
+
+            // Clear processed and approved sets
+            simState.processedIds.clear();
+            simState.approvedIds.clear();
+            simState.pageIndex = 0;
+            
+            // Reset employee balances
+            simState.employeeBalances = {
+                annual: 14,
+                medical: 7,
+                casual: 5
+            };
+            
+            // Clear comments
+            document.getElementById("sim-comment").value = '';
+            document.getElementById("comment-error").style.display = 'none';
+            
+            // Close open overlays
+            closeReview();
+            cancelCommit();
+            
+            // Close employee modal overlays
+            if (document.getElementById("modal-apply-leave")) {
+                document.getElementById("modal-apply-leave").classList.remove("active");
+            }
+            if (document.getElementById("modal-review-apply")) {
+                document.getElementById("modal-review-apply").classList.remove("active");
+            }
+            if (document.getElementById("modal-success-apply")) {
+                document.getElementById("modal-success-apply").classList.remove("active");
+            }
+
+            // Re-render simulator views
+            renderQueue();
+            updateLeaveTodayTooltip();
+            if (simState.currentRole === 'employee') {
+                renderEmployeeDashboard();
+            }
+            
+            showToast("✓ Simulation Reset - Initial requests restored");
+        }
+
+        // ==========================================================================
+        // EMPLOYEE VIEW & LEAVE APPLICATION METHODS
+        // ==========================================================================
+        
+        function toggleRole() {
+            const title = document.getElementById("sim-portal-title");
+            const headerTitle = document.querySelector(".sim-header div:nth-child(2)");
+            const switcherBtn = document.getElementById("btn-role-switcher");
+            const profileBox = document.getElementById("sim-profile-box");
+            
+            const mgrView = document.getElementById("sim-manager-view");
+            const empView = document.getElementById("sim-employee-view");
+
+            if (simState.currentRole === 'manager') {
+                simState.currentRole = 'employee';
+                
+                title.textContent = 'Employee Portal';
+                headerTitle.textContent = 'LMS Portal Prototype v1.0 — Employee View';
+                switcherBtn.textContent = 'Switch to Manager View';
+                profileBox.innerHTML = '<span>S. Jenkins (Engineering Mgr)</span>';
+                
+                mgrView.style.display = 'none';
+                empView.style.display = 'block';
+                
+                renderEmployeeDashboard();
+            } else {
+                simState.currentRole = 'manager';
+                
+                title.textContent = 'Manager Portal';
+                headerTitle.textContent = 'LMS Portal Prototype v1.0 — Manager View';
+                switcherBtn.textContent = 'Switch to Employee View';
+                profileBox.innerHTML = '<span>S. Jenkins (Engineering Mgr)</span>';
+                
+                mgrView.style.display = 'block';
+                empView.style.display = 'none';
+                
+                renderQueue();
+            }
+        }
+
+        // History filters state
+        let historyFilters = {
+            search: '',
+            type: 'all',
+            status: 'all',
+            year: 'all',
+            sort: 'newest'
+        };
+
+        function filterHistory() {
+            historyFilters.search = document.getElementById("emp-history-search").value.trim().toLowerCase();
+            historyFilters.type = document.getElementById("emp-history-filter-type").value;
+            historyFilters.status = document.getElementById("emp-history-filter-status").value;
+            historyFilters.year = document.getElementById("emp-history-filter-year").value;
+            historyFilters.sort = document.getElementById("emp-history-sort").value;
+            
+            simState.historyPageIndex = 0; // Reset pagination on filter
+            renderEmployeeDashboard();
+        }
+
+        function changeHistoryPage(dir) {
+            simState.historyPageIndex += dir;
+            renderEmployeeDashboard();
+        }
+
+        function changeRecentPage(dir) {
+            simState.recentPageIndex += dir;
+            renderEmployeeDashboard();
+        }
+
+        function renderEmployeeDashboard() {
+            // Update leave balances
+            document.getElementById("balance-annual").textContent = simState.employeeBalances.annual;
+            document.getElementById("balance-medical").textContent = simState.employeeBalances.medical;
+            document.getElementById("balance-casual").textContent = simState.employeeBalances.casual;
+
+            // 1. Render Approved Leave History with search, filter, sort, pagination
+            let filteredHistory = simState.approvedLeaves.filter(item => {
+                // Search query
+                const searchMatch = !historyFilters.search || 
+                                    item.id.toLowerCase().includes(historyFilters.search) || 
+                                    item.type.toLowerCase().includes(historyFilters.search) || 
+                                    item.month.toLowerCase().includes(historyFilters.search);
+                // Type filter
+                const typeMatch = historyFilters.type === 'all' || item.type.includes(historyFilters.type);
+                // Status filter
+                const statusMatch = historyFilters.status === 'all' || item.status === historyFilters.status;
+                // Year filter
+                const yearMatch = historyFilters.year === 'all' || item.year.toString() === historyFilters.year;
+                
+                return searchMatch && typeMatch && statusMatch && yearMatch;
+            });
+
+            // Sort history
+            if (historyFilters.sort === 'newest') {
+                filteredHistory.sort((a, b) => b.id.localeCompare(a.id));
+            } else {
+                filteredHistory.sort((a, b) => a.id.localeCompare(b.id));
+            }
+
+            const approvedBody = document.getElementById("emp-approved-body");
+            approvedBody.innerHTML = '';
+            
+            const totalHistory = filteredHistory.length;
+            const historyPaginationBar = document.getElementById("history-pagination-bar");
+
+            if (totalHistory === 0) {
+                document.getElementById("emp-approved-empty").style.display = 'block';
+                historyPaginationBar.style.display = 'none';
+            } else {
+                document.getElementById("emp-approved-empty").style.display = 'none';
+                historyPaginationBar.style.display = 'flex';
+
+                const maxHistoryIndex = Math.max(0, Math.ceil(totalHistory / simState.historyPageSize) - 1);
+                if (simState.historyPageIndex > maxHistoryIndex) {
+                    simState.historyPageIndex = maxHistoryIndex;
+                }
+
+                const startIdx = simState.historyPageIndex * simState.historyPageSize;
+                const endIdx = startIdx + simState.historyPageSize;
+                const paginatedHistory = filteredHistory.slice(startIdx, endIdx);
+
+                document.getElementById("history-pagination-info").textContent = `Showing ${startIdx + 1}–${Math.min(endIdx, totalHistory)} of ${totalHistory}`;
+                document.getElementById("btn-history-prev").disabled = (simState.historyPageIndex === 0);
+                document.getElementById("btn-history-next").disabled = (simState.historyPageIndex === maxHistoryIndex);
+
+                paginatedHistory.forEach(l => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong style="font-family:'IBM Plex Mono', monospace;">${l.id}</strong></td>
+                        <td><strong>${l.type}</strong></td>
+                        <td>${l.dates}, ${l.year}</td>
+                        <td>${l.duration}</td>
+                        <td style="text-align: right;"><span class="badge badge-conflict" style="background-color: var(--accent-green-light); color: var(--accent-green); border-color: var(--accent-green);">Approved</span></td>
+                    `;
+                    approvedBody.appendChild(tr);
+                });
+            }
+
+            // 2. Render Recent Leave Requests with pagination if large
+            const recentBody = document.getElementById("emp-recent-body");
+            recentBody.innerHTML = '';
+            
+            const employeeRequests = simState.activeRequests.filter(r => r.createdByEmployee === true);
+            const totalRecent = employeeRequests.length;
+            const recentPaginationBar = document.getElementById("recent-pagination-bar");
+
+            if (totalRecent === 0) {
+                document.getElementById("emp-recent-empty").style.display = 'block';
+                recentPaginationBar.style.display = 'none';
+            } else {
+                document.getElementById("emp-recent-empty").style.display = 'none';
+                
+                // Show pagination only if number of items is greater than size
+                if (totalRecent > simState.recentPageSize) {
+                    recentPaginationBar.style.display = 'flex';
+                    const maxRecentIndex = Math.max(0, Math.ceil(totalRecent / simState.recentPageSize) - 1);
+                    if (simState.recentPageIndex > maxRecentIndex) {
+                        simState.recentPageIndex = maxRecentIndex;
+                    }
+                    
+                    const startRIdx = simState.recentPageIndex * simState.recentPageSize;
+                    const endRIdx = startRIdx + simState.recentPageSize;
+                    const paginatedRecent = employeeRequests.slice(startRIdx, endRIdx);
+
+                    document.getElementById("recent-pagination-info").textContent = `Showing ${startRIdx + 1}–${Math.min(endRIdx, totalRecent)} of ${totalRecent}`;
+                    document.getElementById("btn-recent-prev").disabled = (simState.recentPageIndex === 0);
+                    document.getElementById("btn-recent-next").disabled = (simState.recentPageIndex === maxRecentIndex);
+
+                    paginatedRecent.forEach(r => {
+                        renderRecentRow(r);
+                    });
+                } else {
+                    recentPaginationBar.style.display = 'none';
+                    employeeRequests.forEach(r => {
+                        renderRecentRow(r);
+                    });
+                }
+            }
+        }
+
+        function renderRecentRow(r) {
+            const recentBody = document.getElementById("emp-recent-body");
+            const tr = document.createElement('tr');
+            let statusHTML = '';
+            if (!simState.processedIds.has(r.id)) {
+                statusHTML = `<span class="badge badge-overdue" style="background-color: var(--accent-yellow-light); color: var(--accent-yellow); border-color: var(--accent-yellow);">Pending</span>`;
+            } else if (simState.approvedIds.has(r.id)) {
+                statusHTML = `<span class="badge badge-conflict" style="background-color: var(--accent-green-light); color: var(--accent-green); border-color: var(--accent-green);">Approved</span>`;
+            } else {
+                statusHTML = `<span class="badge badge-unpaid" style="background-color: var(--accent-red-light); color: var(--accent-red); border-color: var(--accent-red);">Rejected</span>`;
+            }
+            
+            tr.innerHTML = `
+                <td><strong>${r.type}</strong></td>
+                <td>${r.dates}</td>
+                <td>${r.duration}</td>
+                <td style="text-align: right;">${statusHTML}</td>
+            `;
+            recentBody.appendChild(tr);
+        }
+
+        function openApplyForm() {
+            document.getElementById("leave-form").reset();
+            document.getElementById("form-total-days").textContent = '0 days';
+            document.getElementById("form-error").style.display = 'none';
+            
+            // Set simulated dates relative to the prototype date context (Dec 25, 2026)
+            document.getElementById("form-start-date").value = "2026-12-28";
+            document.getElementById("form-end-date").value = "2026-12-30";
+            
+            updateFormBalance();
+            calculateFormDays();
+            
+            document.getElementById("modal-apply-leave").classList.add("active");
+        }
+
+        function closeApplyForm() {
+            document.getElementById("modal-apply-leave").classList.remove("active");
+        }
+
+        function updateFormBalance() {
+            const leaveType = document.getElementById("form-leave-type").value;
+            const balance = simState.employeeBalances[leaveType];
+            document.getElementById("form-balance-label").textContent = `Remaining Balance: ${balance} days`;
+        }
+
+        function calculateFormDays() {
+            const startStr = document.getElementById("form-start-date").value;
+            const endStr = document.getElementById("form-end-date").value;
+            
+            if (!startStr || !endStr) {
+                document.getElementById("form-total-days").textContent = '0 days';
+                return;
+            }
+            
+            const start = new Date(startStr);
+            const end = new Date(endStr);
+            
+            if (end < start) {
+                document.getElementById("form-total-days").textContent = '0 days (Invalid dates)';
+                return;
+            }
+            
+            const diffTime = Math.abs(end - start);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            
+            document.getElementById("form-total-days").textContent = `${diffDays} day${diffDays > 1 ? 's' : ''}`;
+        }
+
+        let tempFormRequest = null;
+
+        const formatDateStr = (dateStr) => {
+            const parts = dateStr.split('-');
+            if (parts.length !== 3) return dateStr;
+            const monthIndex = parseInt(parts[1]) - 1;
+            const day = parseInt(parts[2]);
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return `${months[monthIndex]} ${day}`;
+        };
+
+        function submitApplyForm(event) {
+            event.preventDefault();
+            
+            const leaveType = document.getElementById("form-leave-type").value;
+            const startStr = document.getElementById("form-start-date").value;
+            const endStr = document.getElementById("form-end-date").value;
+            const reason = document.getElementById("form-reason").value.trim();
+            const docFile = document.getElementById("form-doc").files[0];
+            const docName = docFile ? docFile.name : 'None';
+            
+            const start = new Date(startStr);
+            const end = new Date(endStr);
+            
+            const errorDiv = document.getElementById("form-error");
+            errorDiv.style.display = 'none';
+            
+            if (end < start) {
+                errorDiv.textContent = '⚠ End Date cannot be before Start Date.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            const diffTime = Math.abs(end - start);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            
+            const balance = simState.employeeBalances[leaveType];
+            
+            // Validate start date relative to Dec 25, 2026
+            const protoDate = new Date("2026-12-25");
+            if (start < protoDate) {
+                errorDiv.textContent = '⚠ Start date cannot be before Dec 25, 2026 (the current simulated date).';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            tempFormRequest = {
+                type: leaveType.charAt(0).toUpperCase() + leaveType.slice(1) + ' Leave',
+                leaveType: leaveType,
+                startStr: startStr,
+                endStr: endStr,
+                formattedDates: `${formatDateStr(startStr)} - ${formatDateStr(endStr)}`,
+                duration: diffDays,
+                reason: reason,
+                docName: docName,
+                balance: balance
+            };
+            
+            document.getElementById("review-type").textContent = tempFormRequest.type;
+            document.getElementById("review-duration").textContent = `${tempFormRequest.duration} day${tempFormRequest.duration > 1 ? 's' : ''}`;
+            document.getElementById("review-dates").textContent = `${tempFormRequest.startStr} to ${tempFormRequest.endStr}`;
+            document.getElementById("review-reason").textContent = `"${tempFormRequest.reason}"`;
+            document.getElementById("review-doc").innerHTML = tempFormRequest.docName !== 'None'
+                ? `📄 Attachment: <strong>${tempFormRequest.docName}</strong>`
+                : `📄 Attachment: <em>None</em>`;
+                
+            const warningBanner = document.getElementById("review-warning-banner");
+            if (tempFormRequest.duration > tempFormRequest.balance) {
+                warningBanner.innerHTML = `<span>⚠ OVERDRAFT WARNING: Insufficient balance. Remaining balance is ${tempFormRequest.balance} days. The excess ${tempFormRequest.duration - tempFormRequest.balance} days will be marked as unpaid leave.</span>`;
+                warningBanner.style.display = 'block';
+            } else {
+                warningBanner.style.display = 'none';
+            }
+            
+            closeApplyForm();
+            document.getElementById("modal-review-apply").classList.add("active");
+        }
+
+        function closeReviewApply() {
+            document.getElementById("modal-review-apply").classList.remove("active");
+            tempFormRequest = null;
+        }
+
+        function editApplyForm() {
+            document.getElementById("modal-review-apply").classList.remove("active");
+            document.getElementById("modal-apply-leave").classList.add("active");
+        }
+
+        function confirmAndSubmitLeave() {
+            if (!tempFormRequest) return;
+            
+            const randomIdNum = Math.floor(Math.random() * 900) + 100;
+            const reqId = `REQ-2026-${randomIdNum}`;
+            const startDay = parseInt(tempFormRequest.startStr.split('-')[2]);
+            const endDay = parseInt(tempFormRequest.endStr.split('-')[2]);
+            
+            const newRequest = {
+                id: reqId.toLowerCase(),
+                name: 'S. Jenkins',
+                role: 'Engineering Mgr',
+                dept: 'Engineering',
+                type: tempFormRequest.type,
+                dates: tempFormRequest.formattedDates,
+                duration: `${tempFormRequest.duration} day${tempFormRequest.duration > 1 ? 's' : ''}`,
+                reason: tempFormRequest.reason,
+                document: tempFormRequest.docName,
+                isConflict: false,
+                isOverdue: false,
+                isUnpaid: tempFormRequest.duration > tempFormRequest.balance,
+                startDay: startDay,
+                endDay: endDay,
+                createdByEmployee: true
+            };
+            
+            simState.activeRequests.unshift(newRequest);
+            
+            document.getElementById("success-id").textContent = reqId;
+            
+            document.getElementById("modal-review-apply").classList.remove("active");
+            document.getElementById("modal-success-apply").classList.add("active");
+            
+            renderEmployeeDashboard();
+            renderQueue();
+            updateLeaveTodayTooltip();
+        }
+
+        function closeSuccessApply() {
+            document.getElementById("modal-success-apply").classList.remove("active");
+            tempFormRequest = null;
+            showToast("✓ Request submitted - pending manager approval");
+        }
+
+        function changePage(direction) {
+            simState.pageIndex += direction;
+            renderQueue();
+        }
+
+        // Initial setup
+        document.addEventListener("DOMContentLoaded", () => {
+            updateLeaveTodayTooltip();
+            renderQueue();
+        });
+    </script>
+</body>
+</html>
