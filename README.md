@@ -4,19 +4,58 @@ A comprehensive, unified product design case study of a **Leave Management Syste
 
 Designed by Rima Debnath.
 
-## Key Case Study Sections
-- **Problem Statement & Gaps:** Maps organizational bottlenecks and qualitative user complaints.
-- **Symmetric Pain Points Matrix:** Analyzes and aligns employee/manager needs with design solutions.
-- **BPMN & System Architecture Sitemap:** A hybrid logical flowchart featuring decision diamonds, loops, and shared system services (Leave Balance Engine, Conflict Detection, etc.).
-- **Interactive Prototype Simulator:** Inline JavaScript prototype simulator allowing user role swapping, request processing, dynamic alert rendering, and advanced history logs.
-- **Figma Embedded Canvases:** Side-by-side embedded Figma sheets mapping both user flows.
-- **UX Decisions & Reflections:** Highly structured cards explaining design pillars and future goals.
+## 🔗 Live Deployments
+- **Live Production URL:** [https://lms-product-design-case-study.vercel.app](https://lms-product-design-case-study.vercel.app)
+- **GitHub Repository:** [https://github.com/Rimadebnath/leave-management-system-case-study](https://github.com/Rimadebnath/leave-management-system-case-study)
 
-## Local Execution
-To run the case study and interact with the live dashboard prototype locally, open `index.html` in any web browser, or serve it using an HTTP server:
+---
+
+## 🛠 Project Architecture & Files
+- `index.html`: The core single-page portfolio layout, CSS design systems, interactive sitemap diagrams, and the inline browser simulator.
+- `README.md`: Project summary, setup, deployment guide.
+- `LICENSE`: Open-source MIT license details.
+- `.gitignore`: Configured to prevent local cache and deployment artifacts from leaking to version control.
+
+---
+
+## 🚀 Development & Deployment Reference
+
+### Local Preview
+To serve the case study and inline prototype simulator locally, open `index.html` in any browser, or spin up a local server:
 ```bash
 npx serve .
 ```
 
+### Vercel Integration (CI/CD)
+The project is connected to Vercel for automatic continuous deployments. Any future code modifications pushed to the GitHub repository will trigger a fresh build automatically.
+
+#### CLI Deployment Reference
+If you need to trigger a manual deployment or manage Vercel configurations:
+```bash
+# Preview deployment
+npx vercel
+
+# Production release
+npx vercel --prod
+```
+
+#### GitHub CLI Reference
+To view status or manage repository properties from your terminal:
+```bash
+# Check status
+gh auth status
+
+# View repository details
+gh repo view
+```
+
+---
+
+## 📝 Commit History Details
+- **Production Branch:** `master`
+- **Initial Deployment Commit Hash:** `7f64a7adc132b64801c683ecefd85b6b40be5db6`
+
+---
+
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+Licensed under the MIT License - see [LICENSE](./LICENSE) for details.
