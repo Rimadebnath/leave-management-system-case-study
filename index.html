@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Product Design Case Study: Leave Management System (LMS) covering Employee and Manager experiences. Designed for Rima Debnath's portfolio.">
-    <title>rima's portfolio - Leave Management System (LMS) Case Study</title>
+    <title>LMS — Rima Debnath</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lms-product-design-case-study.vercel.app/">
+    <meta property="og:title" content="LMS — Rima Debnath">
+    <meta property="og:description" content="Product Design Case Study: Leave Management System (LMS) covering Employee and Manager experiences. Designed for Rima Debnath's portfolio.">
+    <meta property="og:image" content="https://lms-product-design-case-study.vercel.app/og-cover.jpg">
+    <meta property="og:image:width" content="1600">
+    <meta property="og:image:height" content="1000">
+    <meta property="og:image:alt" content="Leave Management System manager approval dashboard">
+    <meta name="twitter:card" content="summary_large_image">
     
-    <!-- Google Fonts: Ramaraja for Serif Headings, IBM Plex Mono for Monospace Elements -->
+    <!-- Google Fonts: Ramaraja for headings, IBM Plex Sans for body text, IBM Plex Mono for labels and the prototype -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ramaraja&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ramaraja&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================================================
-           GRACE JOSEPH PORTFOLIO DESIGN SYSTEM
+           LMS CASE STUDY: BASE STYLES
            ========================================================================== */
         
         * {
@@ -23,10 +33,10 @@
         }
 
         :root {
-            --bg-page: #fafafa;
+            --bg-page: #fffefc;
             --bg-card: #ffffff;
             --bg-panel: #f8f8f6;
-            --text-primary: #000000;
+            --text-primary: #111;
             --text-secondary: #444444;
             --text-muted: #888888;
             --border-primary: 1px solid #000000;
@@ -34,14 +44,17 @@
             --border-dashed: 1px dashed #666666;
             
             /* Underline & Highlight Colors */
-            --accent-green: #0D5C34;
+            --accent: #2f22cc;        /* case-study accent (matches the blue portfolio card) */
+            --accent-soft: #ecebfb;
+            --accent-ink: #2f22cc;
+            --accent-green: #0D5C34;  /* kept for the embedded prototype (approve / active) */
             --accent-green-light: #EBF5EE;
             --accent-red: #D95D39;
             --accent-red-light: #FDF2F0;
             --accent-yellow: #DF9A00;
             --accent-yellow-light: #FFF9E6;
             
-            --selection-bg: #bdffb7;
+            --selection-bg: #d9d6ff;
             --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -55,9 +68,8 @@
         body {
             background-color: var(--bg-page);
             color: var(--text-primary);
-            font-family: 'IBM Plex Mono', monospace;
+            font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            padding-top: 9vh; /* topbar offset */
             overflow-x: hidden;
         }
 
@@ -102,56 +114,21 @@
         }
 
         .green-underline {
-            text-decoration-color: var(--accent-green);
-            -moz-text-decoration-color: var(--accent-green);
+            text-decoration-color: var(--accent);
+            -moz-text-decoration-color: var(--accent);
         }
 
-        /* Header Bar (#topbar) */
-        #topbar {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: var(--border-primary);
-            margin: 0;
-            padding: 1.5vh 3rem;
-            position: fixed;
-            background-color: var(--bg-page);
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            height: 9vh;
-        }
+        
 
-        #nameplate {
-            font-size: 24px;
-            font-family: 'Ramaraja', serif;
-            padding: 0;
-        }
+        
 
-        #navbar ul {
-            display: flex;
-            flex-direction: row;
-            margin: 0;
-            padding: 0;
-        }
+        
 
-        #navbar ul li {
-            list-style-type: none;
-            padding: 0 1.5rem;
-        }
+        
 
-        #navbar h2 {
-            font-size: 20px;
-            margin: 0;
-            padding: 0;
-        }
+        
 
-        #navbar a:hover {
-            text-decoration: underline;
-            text-decoration-color: var(--accent-green);
-        }
+        
 
         /* Layout Main Containers */
         .work-page-content {
@@ -222,7 +199,7 @@
             font-weight: 400;
             line-height: 1.6;
             color: var(--text-primary);
-            border-left: 3px solid var(--accent-green);
+            border-left: 3px solid var(--accent);
             padding-left: 2rem;
         }
 
@@ -274,9 +251,7 @@
             .work-page-skills-main {
                 grid-template-columns: 1fr;
             }
-            #topbar {
-                padding: 1.5vh 1.5rem;
-            }
+            
         }
 
         .section-left h2 {
@@ -421,8 +396,8 @@
         }
 
         .deliverable-card:hover {
-            background-color: var(--accent-green-light);
-            border-color: var(--accent-green);
+            background-color: var(--accent-soft);
+            border-color: var(--accent);
         }
 
         .deliverable-meta {
@@ -1011,7 +986,7 @@
             margin-top: 10px;
             margin-bottom: 6px;
             text-transform: uppercase;
-            color: var(--accent-green);
+            color: var(--accent);
         }
         
         .hover-card-content h5:first-child {
@@ -1053,7 +1028,7 @@
         }
 
         .figma-tab-btn:hover {
-            background-color: var(--accent-green-light);
+            background-color: var(--accent-soft);
         }
 
         .figma-tab-btn.active-tab {
@@ -1194,7 +1169,7 @@
             stroke: currentColor;
             stroke-width: 1.5;
             fill: none;
-            color: var(--accent-green);
+            color: var(--accent);
         }
         .editorial-card h3, .editorial-card h4 {
             margin: 0;
@@ -1213,36 +1188,11 @@
            RESPONSIVE REFACTOR MEDIA QUERIES & UTILITIES
            ========================================================================== */
 
-        /* Hamburger button styles */
-        #hamburger-menu {
-            display: none;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            width: 44px;
-            height: 44px;
-            padding: 10px;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1100;
-        }
-        #hamburger-menu span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background-color: var(--text-primary);
-            transition: var(--transition);
-        }
-        #hamburger-menu.active span:nth-child(1) {
-            transform: translateY(10px) rotate(45deg);
-        }
-        #hamburger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-        #hamburger-menu.active span:nth-child(3) {
-            transform: translateY(-10px) rotate(-45deg);
-        }
+        
+        
+        
+        
+        
 
         /* Adjust info-row grid borders when wrapping */
         .work-page-info-row {
@@ -1297,9 +1247,7 @@
 
         /* Responsive adjustments for Tablet Landscape & Portrait (768px - 1023px) */
         @media (max-width: 1023px) {
-            #topbar {
-                padding: 1.5vh 2rem;
-            }
+            
             .gap-questions-grid {
                 gap: 1.5rem;
             }
@@ -1311,43 +1259,6 @@
 
         /* Mobile specific layouts (max-width: 767px) */
         @media (max-width: 767px) {
-            #hamburger-menu {
-                display: flex;
-            }
-
-            #navbar {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--bg-page);
-                border-top: var(--border-primary);
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                z-index: 1050;
-            }
-            #navbar.active {
-                display: flex;
-            }
-            #navbar ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 2rem;
-            }
-            #navbar ul li {
-                padding: 0;
-            }
-
-            #topbar {
-                height: 70px;
-                padding: 10px 1.5rem;
-            }
-            body {
-                padding-top: 70px;
-            }
 
             .work-page-content {
                 padding: 2rem 1rem;
@@ -1426,12 +1337,8 @@
 
         /* Small Mobile (max-width: 480px) */
         @media (max-width: 480px) {
-            #topbar {
-                padding: 10px 1rem;
-            }
-            #nameplate {
-                font-size: 20px;
-            }
+            
+            
             .work-page-info-row {
                 grid-template-columns: 1fr;
             }
@@ -1477,34 +1384,154 @@
             #btn-role-switcher,
             .figma-tab-btn,
             .btn-sim-action,
-            #leave-form button,
-            #topbar button,
-            #navbar a {
+            #leave-form button {
                 min-height: 44px;
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
             }
         }
+/* =====================================================================
+   Shared frame for Rima Debnath's case studies
+   Source of truth: the portfolio (D:\codexPortfolio, styles.css).
+   Copy this block into each case study's <style>. Classes are prefixed
+   "rd-" so they never clash with a case study's own .nav / .footer.
+   Each case study keeps its own --accent / --accent-ink.
+   ===================================================================== */
+:root {
+  --rd-paper: #fffefc;
+  --rd-ink: #111;
+  --rd-rule: #111;
+  --rd-green: #00653c;
+  --rd-page-pad: clamp(38px, 7vw, 92px);
+  --rd-font-heading: 'Ramaraja', Georgia, serif;
+  --rd-font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --rd-font-mono: 'IBM Plex Mono', ui-monospace, Menlo, Monaco, monospace;
+  --rd-ease: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+
+/* ---------- Navbar (portfolio .topbar) ---------- */
+.rd-topbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  min-height: 68px;
+  padding: 0 var(--rd-page-pad);
+  border-bottom: 1px solid var(--rd-rule);
+  background: rgba(255, 254, 252, 0.92);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.rd-wordmark {
+  font-family: var(--rd-font-heading); font-weight: 400; letter-spacing: -0.01em;
+  font-size: clamp(26px, 3vw, 34px); line-height: 1;
+  color: var(--rd-ink); text-decoration: none; white-space: nowrap;
+}
+.rd-nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 44px); }
+.rd-nav a, .rd-menu {
+  border: 0; background: transparent; color: var(--rd-ink); text-decoration: none;
+  font-family: var(--rd-font-mono); font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; white-space: nowrap;
+}
+.rd-nav a { position: relative; }
+.rd-nav a::after {
+  position: absolute; left: 0; bottom: -5px; width: 0; height: 1px;
+  background: var(--accent, var(--rd-ink)); content: ""; transition: width 0.25s ease;
+}
+.rd-nav a:hover::after, .rd-nav a:focus-visible::after, .rd-nav a.is-active::after { width: 100%; }
+.rd-menu { display: none; padding: 0; }
+
+/* ---------- Footer (portfolio .footer) ---------- */
+.rd-footer {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center;
+  width: 100%; margin: 0; padding: 38px var(--rd-page-pad);
+  border-top: 1px solid var(--rd-rule); background: var(--rd-paper); color: var(--rd-ink);
+  font-family: var(--rd-font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.rd-footer p { margin: 0; }
+.rd-footer p:first-child { justify-self: start; padding: 10px 16px; border: 1px solid var(--rd-rule); }
+.rd-footer-contact { justify-self: center; font-weight: 600; }
+.rd-footer-contact a {
+  display: inline-block; margin-left: 8px; padding: 10px 18px;
+  background: var(--rd-green); color: var(--rd-paper); text-decoration: none;
+  font-family: var(--rd-font-mono); font-size: 11px; text-transform: lowercase; letter-spacing: normal;
+}
+.rd-footer-coffee { justify-self: end; }
+.rd-coffee-link {
+  display: inline-flex; align-items: center; padding: 10px 16px;
+  border: 1px solid var(--rd-rule); background: var(--rd-paper); color: var(--rd-ink); text-decoration: none;
+  font-family: var(--rd-font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s var(--rd-ease);
+}
+.rd-coffee-link:hover { background: var(--rd-ink); color: var(--rd-paper); transform: translateY(-2px); }
+/* optional single line above the footer (e.g. "Code on GitHub") */
+.rd-extra { padding: 18px var(--rd-page-pad); border-top: 1px solid var(--rd-rule); font-family: var(--rd-font-mono); font-size: 12px; letter-spacing: 0.04em; }
+.rd-extra a { color: var(--rd-ink); text-underline-offset: 3px; }
+
+/* ---------- Section label + caption ---------- */
+.rd-label {
+  display: block; font-family: var(--rd-font-mono); font-size: 13px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-ink, var(--rd-ink));
+}
+.rd-caption { font-family: var(--rd-font-mono); font-size: 12px; line-height: 1.5; color: #5f625f; text-align: left; }
+
+/* ---------- Tablet: footer stacks (portfolio <= 900px) ---------- */
+@media (max-width: 900px) {
+  .rd-footer { grid-template-columns: 1fr; }
+  .rd-footer p, .rd-footer p:first-child, .rd-footer-contact, .rd-footer-coffee { justify-self: start; }
+}
+
+/* ---------- MENU button: portfolio switches at <= 680px (4 links).
+   Case studies have 6-8 links, so they switch at <= 900px:
+   change "680px" below to "900px" when copying into a case study. ---------- */
+@media (max-width: 900px) {
+  .rd-topbar { padding: 0 18px; }
+  .rd-menu { display: block; }
+  .rd-nav {
+    position: absolute; left: 0; right: 0; top: 100%;
+    display: grid; gap: 0;
+    border-bottom: 1px solid var(--rd-rule); background: var(--rd-paper);
+    opacity: 0; pointer-events: none; transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .rd-nav.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .rd-nav a { padding: 16px 20px; border-top: 1px solid var(--rd-rule); }
+  .rd-nav a::after { display: none; }
+  .rd-footer { gap: 16px; }
+  .rd-footer-contact a { margin-left: 0; margin-top: 8px; display: block; width: fit-content; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rd-nav, .rd-nav a::after, .rd-coffee-link { transition: none; }
+}
+
+.rd-footer { margin-top: 8rem; }
+/* Body is IBM Plex Sans; labels, the BPMN diagram and the embedded prototype stay IBM Plex Mono */
+.simulator-window, .sitemap-container, .info-cell span, .figma-tab-bar, .workspace-categories, .figma-embed-meta, .up-next-role, .flow-step-visual h4, .sim-panel-title-row { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+/* six nav items with longer names: slightly tighter spacing so the row fits down to 901px */
+.rd-nav { gap: clamp(18px, 1.8vw, 28px); }
+/* three UX-decision cards don't fit side by side in the narrow column below ~960px: stack them, as the page already does below 900px */
+@media (max-width: 1000px) { .editorial-grid-3 { grid-template-columns: 1fr !important; gap: 1.5rem; } }
+/* Grid columns may shrink below their content, so wide diagrams scroll inside their own box */
+.section-grid > * { min-width: 0; }
+/* Figma fallback (the file only opens for people with access) */
+.figma-fallback { border: var(--border-primary); background: var(--bg-panel); min-height: 220px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem; }
+.figma-fallback p { margin: 0; font-size: 14px; color: var(--text-secondary); }
+.figma-fallback-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.figma-fallback-actions a, .figma-fallback-actions button { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 14px; border: var(--border-primary); background: var(--bg-card); color: var(--text-primary); text-decoration: none; cursor: pointer; }
+.figma-fallback-actions a { background: var(--text-primary); color: var(--bg-card); }
     </style>
 </head>
 <body>
 
-    <!-- Header bar (#topbar) -->
-    <header id="topbar">
-        <h1 id="nameplate"><a href="https://rima-portfolio-teal.vercel.app/">rima debnath</a></h1>
-        <button id="hamburger-menu" aria-label="Toggle navigation menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav id="navbar">
-            <ul>
-                <li><h2><a href="https://rima-portfolio-teal.vercel.app/#work">work</a></h2></li>
-                <li><h2><a href="https://rima-portfolio-teal.vercel.app/#skills">skills</a></h2></li>
-                <li><h2><a href="https://rima-portfolio-teal.vercel.app/#about">about</a></h2></li>
-                <li><h2><a href="#" target="_blank">resume</a></h2></li>
-            </ul>
+    <header class="rd-topbar">
+        <a class="rd-wordmark" href="https://rima-portfolio-teal.vercel.app/">rima debnath</a>
+        <button class="rd-menu" type="button" aria-expanded="false" aria-controls="rd-nav">menu</button>
+        <nav class="rd-nav" id="rd-nav" aria-label="Case study navigation">
+            <a href="https://rima-portfolio-teal.vercel.app/#work">← back to work</a>
+            <a href="#gap">the gap</a>
+            <a href="#prototype">prototype</a>
+            <a href="#journeys">journeys</a>
+            <a href="#decisions">decisions</a>
+            <a href="#reflection">reflection</a>
         </nav>
     </header>
 
@@ -1524,7 +1551,7 @@
             </div>
             <div class="info-cell">
                 <span>Context</span>
-                <strong>Lead Product Design Case Study</strong>
+                <strong>Product Design Case Study</strong>
             </div>
             <div class="info-cell">
                 <span>Key Goal</span>
@@ -1568,17 +1595,17 @@
         </div>
 
         <!-- Section 1: The Administrative Gap -->
-        <section class="case-section section-grid">
+        <section id="gap" class="case-section section-grid">
             <div class="section-left">
                 <h2>The Gap</h2>
             </div>
             <div class="section-right">
                 <p>
-                    Through user research, we discovered that leave management is a multi-sided loop of uncertainty. Employees and managers approach the process with distinct questions that traditional tools fail to address:
+                    Through user research, I discovered that leave management is a multi-sided loop of uncertainty. Employees and managers approach the process with distinct questions that traditional tools fail to address:
                 </p>
                 <div class="gap-questions-grid">
                     <div>
-                        <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-green);">Employee Questions</h4>
+                        <h4 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--accent);">Employee Questions</h4>
                         <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">
                             • How many leave days do I have left?<br>
                             • Has my manager seen or approved my request?<br>
@@ -1608,7 +1635,7 @@
             </div>
             <div class="section-right">
                 <p>
-                    We mapped qualitative complaints from both employees and managers into clear functional requirements to design a symmetric, feedback-driven system.
+                    I mapped qualitative complaints from both employees and managers into clear functional requirements to design a symmetric, feedback-driven system.
                 </p>
                 
                 <h3 style="margin-bottom: 1rem; color: var(--accent-red); font-size: 18px;">Manager Pain Points</h3>
@@ -1616,7 +1643,7 @@
                     <div class="matrix-card">
                         <div class="matrix-card-flag">1. Team Blindspots</div>
                         <h3>Absenteeism Conflicts</h3>
-                        <p>Accidental concurrent approvals. We solved this by implementing real-time overlapping date alerts and team availability sidebars directly inside the queue view.</p>
+                        <p>Accidental concurrent approvals. I solved this by implementing real-time overlapping date alerts and team availability sidebars directly inside the queue view.</p>
                     </div>
                     
                     <div class="matrix-card">
@@ -1638,7 +1665,7 @@
                     </div>
                 </div>
 
-                <h3 style="margin-bottom: 1rem; color: var(--accent-green); font-size: 18px;">Employee Pain Points</h3>
+                <h3 style="margin-bottom: 1rem; color: var(--accent); font-size: 18px;">Employee Pain Points</h3>
                 <div class="matrix-grid">
                     <div class="matrix-card">
                         <div class="matrix-card-flag">1. Balance Uncertainty</div>
@@ -1672,32 +1699,32 @@
             <div style="margin-bottom: 2rem;">
                 <h2>Solution Strategy</h2>
                 <p style="margin-top: 1rem;">
-                    To establish a balanced, high-efficiency system, we designed a unified architecture that connects the two user roles. The strategy focuses on bridging the communication and visibility gap through key pillars:
+                    To establish a balanced, high-efficiency system, I designed a unified architecture that connects the two user roles. The strategy focuses on bridging the communication and visibility gap through key pillars:
                 </p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
                 <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Centralized Dashboards</h4>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent);">Centralized Dashboards</h4>
                     <p style="font-size:12px; color: var(--text-secondary);">Separate portals customized for each role. Employees get leave summaries and balance logs; managers get action-oriented queues and quick-stat counters.</p>
                 </div>
                 <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Context-Aware Alerts</h4>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent);">Context-Aware Alerts</h4>
                     <p style="font-size:12px; color: var(--text-secondary);">Direct warning tags visible to managers when reviewing a request—pointing out insufficient balances, overdue queue items, or high-priority notifications.</p>
                 </div>
                 <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Conflict Detection</h4>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent);">Conflict Detection</h4>
                     <p style="font-size:12px; color: var(--text-secondary);">Real-time cross-referencing with other team member schedules to instantly flag overlaps before a manager accidentally approves double absences.</p>
                 </div>
                 <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Auto Calculations</h4>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent);">Auto Calculations</h4>
                     <p style="font-size:12px; color: var(--text-secondary);">Interactive leave balance logic that auto-calculates total request duration and warns employees of potential unpaid leave before submission.</p>
                 </div>
                 <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Transparent Tracking</h4>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent);">Transparent Tracking</h4>
                     <p style="font-size:12px; color: var(--text-secondary);">Real-time status changes sync directly to the employee's history log, eliminating manual messaging and follow-ups.</p>
                 </div>
                 <div style="border: var(--border-primary); padding: 1.5rem; background-color: var(--bg-card); transition: var(--transition);" onmouseover="this.style.boxShadow='4px 4px 0px #000000'; this.style.transform='translate(-4px, -4px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='none';">
-                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent-green);">Guided Review Flow</h4>
+                    <h4 style="font-weight:700; margin-bottom:0.5rem; color: var(--accent);">Guided Review Flow</h4>
                     <p style="font-size:12px; color: var(--text-secondary);">A dedicated detail overlay with required comments for rejections, preserving contextual audit trails.</p>
                 </div>
             </div>
@@ -1967,7 +1994,7 @@
         </section>
 
         <!-- Section 4: Live Interactive Wireframe Simulator (Stretched Full Width) -->
-        <section class="case-section" style="width: 100%;">
+        <section id="prototype" class="case-section" style="width: 100%;">
             <div style="margin-bottom: 2rem;">
                 <h2 class="underline green-underline" style="display:inline-block;">Interactive Prototype Simulator</h2>
                 <p style="font-size: 16px; color: var(--text-secondary); margin-top: 1rem; max-width: 800px;">
@@ -2479,7 +2506,7 @@
             </section>
 
         <!-- Section 5: Employee Flow Case Study -->
-        <section class="case-section section-grid">
+        <section id="journeys" class="case-section section-grid">
             <div class="section-left">
                 <h2>Employee Journey</h2>
             </div>
@@ -2491,14 +2518,14 @@
                 <!-- Step 1 -->
                 <div class="flow-step">
                     <div class="flow-step-text">
-                        <h3 style="color: var(--accent-green); font-size: 18px; margin-bottom: 0.5rem;">1. Dashboard Overview</h3>
+                        <h3 style="color: var(--accent); font-size: 18px; margin-bottom: 0.5rem;">1. Dashboard Overview</h3>
                         <p>
                             The dashboard gives employees an immediate, high-level summary of their current standing. Placing the Annual, Medical, and Casual Leave balances as prominent tiles at the top eliminates the need to consult HR databases or dig through previous paystubs. A secondary list logs approved history and recent requests with real-time status badges, giving employees complete visibility into the progress of their applications.
                         </p>
                     </div>
                     <div class="flow-step-visual">
                         <h4>Dashboard View</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="10" y="10" width="80" height="40" stroke="#000" stroke-width="1"/>
                             <text font-family="monospace" font-size="6" x="20" y="22" fill="#000">Annual L.</text>
                             <text font-family="monospace" font-size="12" font-weight="bold" x="20" y="38" fill="#000">14</text>
@@ -2522,14 +2549,14 @@
                 <!-- Step 2 -->
                 <div class="flow-step">
                     <div class="flow-step-text">
-                        <h3 style="color: var(--accent-green); font-size: 18px; margin-bottom: 0.5rem;">2. Apply Leave Drawer Form</h3>
+                        <h3 style="color: var(--accent); font-size: 18px; margin-bottom: 0.5rem;">2. Apply Leave Drawer Form</h3>
                         <p>
                             The application drawer form is designed to capture all necessary variables in a single popup view. The interface automatically calculates total leave duration based on selected start and end dates. As soon as the type is chosen, it displays the employee's current remaining balance inline, serving as a helpful guide before submission.
                         </p>
                     </div>
                     <div class="flow-step-visual">
                         <h4>Quick Apply Form</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="20" y="10" width="260" height="150" stroke="#000" stroke-width="1"/>
                             <text font-family="monospace" font-size="8" font-weight="bold" x="30" y="25" fill="#000">Apply for Leave</text>
                             <line x1="20" y1="32" x2="280" y2="32" stroke="#000" stroke-width="0.8"/>
@@ -2549,14 +2576,14 @@
                 <!-- Step 3 -->
                 <div class="flow-step">
                     <div class="flow-step-text">
-                        <h3 style="color: var(--accent-green); font-size: 18px; margin-bottom: 0.5rem;">3. Review Verification popup</h3>
+                        <h3 style="color: var(--accent); font-size: 18px; margin-bottom: 0.5rem;">3. Review Verification popup</h3>
                         <p>
                             Before final submission, the employee is presented with a validation overlay. This acts as a double-check mechanism, confirming details like date ranges and requested duration. Crucially, if the duration exceeds their available balance, a warning banner alerts them that the excess days will convert to unpaid leave. This prevents unintentional overdrafts and future payroll disputes.
                         </p>
                     </div>
                     <div class="flow-step-visual">
                         <h4>Verify Leave Details</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="20" y="10" width="260" height="150" stroke="#000" stroke-width="1"/>
                             <text font-family="monospace" font-size="8" font-weight="bold" x="30" y="25" fill="#000">Verify Details</text>
                             <rect x="30" y="35" width="240" height="25" fill="#fafafa" stroke="#666" stroke-dasharray="2,2"/>
@@ -2576,14 +2603,14 @@
                 <!-- Step 4 -->
                 <div class="flow-step">
                     <div class="flow-step-text">
-                        <h3 style="color: var(--accent-green); font-size: 18px; margin-bottom: 0.5rem;">4. Success State popup</h3>
+                        <h3 style="color: var(--accent); font-size: 18px; margin-bottom: 0.5rem;">4. Success State popup</h3>
                         <p>
                             Upon confirmation, a clear success modal closes the loop. It displays a unique Request ID (e.g., REQ-2026-004) and highlights the current status (e.g., "Pending Manager Approval"). Providing this clear endpoint builds trust, reassuring the employee that their request has successfully entered the manager's queue.
                         </p>
                     </div>
                     <div class="flow-step-visual">
                         <h4>Submission Success</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="30" y="15" width="240" height="140" stroke="#000" stroke-width="1"/>
                             <circle cx="150" cy="45" r="14" stroke="#0D5C34" stroke-width="1.5" fill="#EBF5EE"/>
                             <text font-family="monospace" font-size="10" font-weight="bold" fill="#0D5C34" text-anchor="middle" x="150" y="49">✓</text>
@@ -2620,7 +2647,7 @@
                     </div>
                     <div class="flow-step-visual">
                         <h4>Manager Dashboard</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="10" y="20" width="80" height="50" stroke="#000"/>
                             <text font-family="monospace" font-size="5" x="15" y="32">Pending Requests</text>
                             <text font-family="monospace" font-size="14" font-weight="bold" x="15" y="55">3</text>
@@ -2647,7 +2674,7 @@
                     </div>
                     <div class="flow-step-visual">
                         <h4>Request Queue</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="10" y="10" width="280" height="150" stroke="#000"/>
                             <text font-family="monospace" font-size="7" font-weight="bold" x="20" y="25">Pending Request Queue</text>
                             <line x1="10" y1="35" x2="290" y2="35" stroke="#000"/>
@@ -2673,7 +2700,7 @@
                     </div>
                     <div class="flow-step-visual">
                         <h4>Review Drawer</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="50" y="10" width="240" height="160" stroke="#000"/>
                             <text font-family="monospace" font-size="8" font-weight="bold" x="60" y="25">Review Leave Request</text>
                             <line x1="50" y1="32" x2="290" y2="32" stroke="#000"/>
@@ -2696,7 +2723,7 @@
                     </div>
                     <div class="flow-step-visual">
                         <h4>Dynamic Warnings</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="20" y="20" width="260" height="35" fill="#FDF2F0" stroke="#D95D39"/>
                             <text font-family="monospace" font-size="6" font-weight="bold" fill="#D95D39" x="30" y="35">⚠ OVERLAP ALERT: Sneha J. is also away on these dates.</text>
                             <text font-family="monospace" font-size="5.5" fill="#D95D39" x="30" y="46">Team coverage will drop below threshold (50%).</text>
@@ -2717,7 +2744,7 @@
                     </div>
                     <div class="flow-step-visual">
                         <h4>Decision Overlay</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="40" y="25" width="220" height="120" stroke="#000" fill="#fff"/>
                             <text font-family="monospace" font-size="7" font-weight="bold" x="50" y="42">Confirm Action</text>
                             <line x1="40" y1="50" x2="260" y2="50" stroke="#000"/>
@@ -2741,7 +2768,7 @@
                     </div>
                     <div class="flow-step-visual">
                         <h4>Queue Refresh</h4>
-                        <svg viewBox="0 0 300 180" width="100%" height="auto" fill="none" stroke="#000" stroke-width="1.2">
+                        <svg viewBox="0 0 300 180" width="100%" fill="none" stroke="#000" stroke-width="1.2">
                             <rect x="10" y="10" width="280" height="150" stroke="#000"/>
                             <rect x="50" y="25" width="200" height="25" fill="#000" stroke="#fff"/>
                             <text font-family="monospace" font-size="6.5" font-weight="bold" fill="#fff" text-anchor="middle" x="150" y="40">✗ Rejected - Priya R. notified successfully</text>
@@ -2767,7 +2794,7 @@
 
             <!-- Workspace Directory Categories -->
             <div class="workspace-categories" style="display: flex; gap: 2rem; border-bottom: var(--border-primary); padding-bottom: 12px; margin-bottom: 1.5rem; font-size: 11px; font-weight: 700; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">
-                <span style="color: var(--accent-green);">Workspace Directories:</span>
+                <span style="color: var(--accent);">Workspace Directories:</span>
                 <a href="#figma-frame-employee" class="underline green-underline">Employee Flow</a>
                 <span>·</span>
                 <a href="#figma-frame-manager" class="underline green-underline">Manager Flow</a>
@@ -2783,14 +2810,26 @@
             <div class="figma-flows-grid">
                 <div id="figma-frame-employee">
                     <h3 style="margin-bottom: 0.5rem; font-size: 15px; font-weight: 700;">Employee Portal Flow</h3>
-                    <iframe style="border: var(--border-primary); background: #f9f9f9; width: 100%; height: 500px;" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FTpYq8ZVAc82YB3CkuSoJNi%2Fassignments%3Fnode-id%3D634-421%26t%3DXyY8f7BLD4TxJlI8-1" allowfullscreen></iframe>
+                    <div class="figma-fallback" data-embed="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FTpYq8ZVAc82YB3CkuSoJNi%2Fassignments%3Fnode-id%3D634-421%26t%3DXyY8f7BLD4TxJlI8-1">
+                        <p><strong>Employee Portal Flow</strong> lives in Figma. The embedded canvas only opens for people with access to the file.</p>
+                        <div class="figma-fallback-actions">
+                            <a href="https://www.figma.com/design/TpYq8ZVAc82YB3CkuSoJNi/assignments?node-id=634-421" target="_blank" rel="noopener">Open in Figma ↗</a>
+                            <button type="button" class="figma-load">Load embedded view</button>
+                        </div>
+                    </div>
                     <div class="figma-embed-meta" style="margin-top: 10px; font-size: 12px; color: var(--text-secondary);">
                         🔗 Refer to original Figma sheet: <a href="https://www.figma.com/design/TpYq8ZVAc82YB3CkuSoJNi/assignments?node-id=634-421" target="_blank" class="underline green-underline">assignments – Employee Portal Canvas</a>
                     </div>
                 </div>
                 <div id="figma-frame-manager">
                     <h3 style="margin-bottom: 0.5rem; font-size: 15px; font-weight: 700;">Manager Portal Flow</h3>
-                    <iframe style="border: var(--border-primary); background: #f9f9f9; width: 100%; height: 500px;" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FTpYq8ZVAc82YB3CkuSoJNi%2Fassignments%3Fnode-id%3D634-422%26t%3DXyY8f7BLD4TxJlI8-1" allowfullscreen></iframe>
+                    <div class="figma-fallback" data-embed="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FTpYq8ZVAc82YB3CkuSoJNi%2Fassignments%3Fnode-id%3D634-422%26t%3DXyY8f7BLD4TxJlI8-1">
+                        <p><strong>Manager Portal Flow</strong> lives in Figma. The embedded canvas only opens for people with access to the file.</p>
+                        <div class="figma-fallback-actions">
+                            <a href="https://www.figma.com/design/TpYq8ZVAc82YB3CkuSoJNi/assignments?node-id=634-422" target="_blank" rel="noopener">Open in Figma ↗</a>
+                            <button type="button" class="figma-load">Load embedded view</button>
+                        </div>
+                    </div>
                     <div class="figma-embed-meta" style="margin-top: 10px; font-size: 12px; color: var(--text-secondary);">
                         🔗 Refer to original Figma sheet: <a href="https://www.figma.com/design/TpYq8ZVAc82YB3CkuSoJNi/assignments?node-id=634-422" target="_blank" class="underline green-underline">assignments – Manager Portal Canvas</a>
                     </div>
@@ -2799,7 +2838,7 @@
         </section>
 
         <!-- Section 7: Key UX Decisions -->
-        <section class="case-section section-grid">
+        <section id="decisions" class="case-section section-grid">
             <div class="section-left">
                 <h2>Key UX Decisions</h2>
             </div>
@@ -2859,7 +2898,7 @@
         </section>
 
         <!-- Section 8: Reflection & Next Steps -->
-        <section class="case-section section-grid">
+        <section id="reflection" class="case-section section-grid">
             <div class="section-left">
                 <h2>Reflection & Next Steps</h2>
             </div>
@@ -2873,7 +2912,7 @@
                     <div class="editorial-card" style="padding: 2.5rem; gap: 16px;">
                         <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
                             <!-- Lucide Icon: book-open -->
-                            <svg class="editorial-card-icon" viewBox="0 0 24 24" style="color: var(--accent-green);"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            <svg class="editorial-card-icon" viewBox="0 0 24 24" style="color: var(--accent);"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                             <h3 style="font-size: 16px; font-weight: 700; text-transform: uppercase;">Lessons Learned</h3>
                         </div>
                         <p style="font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
@@ -2885,14 +2924,14 @@
                     <div class="editorial-card" style="padding: 2.5rem; gap: 16px;">
                         <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
                             <!-- Lucide Icon: trending-up -->
-                            <svg class="editorial-card-icon" viewBox="0 0 24 24" style="color: var(--accent-green);"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                            <svg class="editorial-card-icon" viewBox="0 0 24 24" style="color: var(--accent);"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
                             <h3 style="font-size: 16px; font-weight: 700; text-transform: uppercase;">Future Improvements & Next Features</h3>
                         </div>
                         
                         <div style="display: flex; flex-direction: column; gap: 20px;">
                             <!-- Feature 1 -->
                             <div style="display: flex; gap: 15px; align-items: flex-start;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent);"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
                                 <div>
                                     <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">Push Notifications:</strong>
                                     <span style="font-size: 13px; color: var(--text-secondary);">Real-time Slack, email, or browser notifications for immediate status updates.</span>
@@ -2900,7 +2939,7 @@
                             </div>
                             <!-- Feature 2 -->
                             <div style="display: flex; gap: 15px; align-items: flex-start;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                                 <div>
                                     <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">Calendar Integration:</strong>
                                     <span style="font-size: 13px; color: var(--text-secondary);">Synchronize approved leaves directly with Outlook, Google Calendar, or Apple Calendar.</span>
@@ -2908,7 +2947,7 @@
                             </div>
                             <!-- Feature 3 -->
                             <div style="display: flex; gap: 15px; align-items: flex-start;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent);"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                                 <div>
                                     <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">Mobile Responsiveness:</strong>
                                     <span style="font-size: 13px; color: var(--text-secondary);">Optimize dashboards for mobile devices so employees can easily submit leave requests on the go.</span>
@@ -2916,7 +2955,7 @@
                             </div>
                             <!-- Feature 4 -->
                             <div style="display: flex; gap: 15px; align-items: flex-start;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
                                 <div>
                                     <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">HR Analytics Dashboard:</strong>
                                     <span style="font-size: 13px; color: var(--text-secondary);">Provide aggregated charts and insights for HR teams to analyze absenteeism trends and leave patterns.</span>
@@ -2924,7 +2963,7 @@
                             </div>
                             <!-- Feature 5 -->
                             <div style="display: flex; gap: 15px; align-items: flex-start;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent-green);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--accent);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                                 <div>
                                     <strong style="font-size: 13px; font-family:'IBM Plex Mono', monospace; font-weight:700;">Delegated Approvals:</strong>
                                     <span style="font-size: 13px; color: var(--text-secondary);">Allow managers to temporarily delegate approval authority to team leads during vacations or extended absences.</span>
@@ -2938,11 +2977,10 @@
 
     </main>
 
-    <!-- Roomy Footer Section -->
-    <footer style="margin-top: 8rem; padding: 5rem 2rem; border-top: var(--border-primary); text-align: center; font-size: 13px; color: var(--text-secondary); background-color: var(--bg-panel);">
-        <p style="font-weight:700; font-family:'Ramaraja',serif; font-size: 24px; margin-bottom: 8px; text-transform: capitalize;"><a href="https://rima-portfolio-teal.vercel.app/">rima debnath</a></p>
-        <p>Product Design Portfolio Case Study • Leave Management System (LMS)</p>
-        <p style="margin-top: 15px; font-size:11px; color: var(--text-muted);">© 2026 Rima Debnath. Designed in Ramaraja & IBM Plex Mono.</p>
+    <footer class="rd-footer">
+        <p>© <span class="rd-year">2026</span> by Rima Debnath</p>
+        <p class="rd-footer-contact">contact: <a href="mailto:rimadebnath.connect@gmail.com">rimadebnath.connect@gmail.com</a></p>
+        <p class="rd-footer-coffee"><a class="rd-coffee-link" href="https://razorpay.me/@microsoftservices" target="_blank" rel="noopener noreferrer">buy me a coffee ☕</a></p>
     </footer>
 
     <!-- SIMULATOR INTERACTIVE BEHAVIOR SCRIPT -->
@@ -3890,22 +3928,23 @@
             updateLeaveTodayTooltip();
             renderQueue();
             
-            // Mobile navigation toggler
-            const hamburger = document.getElementById("hamburger-menu");
-            const navbar = document.getElementById("navbar");
-            if (hamburger && navbar) {
-                hamburger.addEventListener("click", () => {
-                    hamburger.classList.toggle("active");
-                    navbar.classList.toggle("active");
-                });
-                navbar.querySelectorAll("a").forEach(link => {
-                    link.addEventListener("click", () => {
-                        hamburger.classList.remove("active");
-                        navbar.classList.remove("active");
-                    });
-                });
-            }
         });
+    </script>
+    <script>
+    (() => {
+        const btn = document.querySelector('.rd-menu'), nav = document.getElementById('rd-nav');
+        if (btn && nav) {
+            btn.addEventListener('click', () => { const open = nav.classList.toggle('is-open'); btn.setAttribute('aria-expanded', String(open)); });
+            nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }));
+        }
+        document.querySelectorAll('.rd-year').forEach(y => { y.textContent = new Date().getFullYear(); });
+        document.querySelectorAll('.figma-load').forEach(b => b.addEventListener('click', () => {
+            const card = b.closest('.figma-fallback'), f = document.createElement('iframe');
+            f.src = card.dataset.embed; f.title = 'Figma canvas'; f.allowFullscreen = true;
+            f.style.cssText = 'border: var(--border-primary); background: #f9f9f9; width: 100%; height: 500px;';
+            card.replaceWith(f);
+        }));
+    })();
     </script>
 </body>
 </html>
